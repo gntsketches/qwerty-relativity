@@ -1,18 +1,31 @@
 body {
   background: #222222;
   display: grid;
-  grid-template-columns: 25vw 50vw 25vw;
-  grid-template-rows: 25vh 50vh 25vh;
+  grid-template-columns: 10vw 30vw 30vw 10vw;
+  grid-column-gap: 6.5vw;
+  grid-template-rows: 50vh 25vh 25vh;
 }
 
-#current-root-note {
+#left-hand {
   background: #886655;
   color: whitesmoke;
-  font-size: 10rem;
+  font-size: 8rem;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
   text-align: center;
-  line-height: 22rem;
+  line-height: 10rem;
+}
+
+#right-hand {
+  background: #886655;
+  color: whitesmoke;
+  font-size: 8rem;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  text-align: center;
+  line-height: 10rem;
 }

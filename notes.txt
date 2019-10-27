@@ -1,9 +1,12 @@
 TODO
-  figure register many to get rh/lh switch happening
+  set up observer pattern for view
+
+  double-synth: 'current note' functionality - b & y, could add other keys maybe too
 
 how to:
   keyup & keydown
     will need a "down" handler as usual
+  specifying 'left' or 'right' for each listener function is a lot of typing...
 
 mode shifting:
   trigger modes:

@@ -24,43 +24,87 @@ const envelope = { "attack": 0.01, "decay": 0.01, "sustain": 0.75, "release": 3 
 
 
 // Model *************************************************************************
-let currentRootNote = 'C3';
-const setCurrentRootNote = function(thing) {
-  let noteIndex = fullRange.indexOf(currentRootNote)
-  noteIndex = noteIndex + intervalConversions[thing]
-  if (noteIndex > 0 && noteIndex <= fullRange.length-1) {
-    currentRootNote = fullRange[noteIndex]
+const state = {
+  synthOneRoot: 'C3',
+  synthTwoRoot: 'C3',
+  leadSynth: 'synthOne'
+}
+
+const setRootNote = function(whichSynth, change) {
+  if (whichSynth === 'synthOne') {
+    let noteIndex = fullRange.indexOf(state.synthOneRoot)
+    noteIndex = noteIndex + intervalConversions[change]
+    if (noteIndex > 0 && noteIndex <= fullRange.length-1) {
+      state.synthOneRoot = fullRange[noteIndex]
+    }
+  } else {
+    let noteIndex = fullRange.indexOf(state.synthTwoRoot)
+    noteIndex = noteIndex + intervalConversions[change]
+    if (noteIndex > 0 && noteIndex <= fullRange.length-1) {
+      state.synthTwoRoot = fullRange[noteIndex]
+    }
   }
 }
 
 // Audio *************************************************************************
-const synth = new Tone.Synth(
+const synthOne = new Tone.Synth(
+  {
+    "oscillator" : { "type" : "sawtooth" },
+    "envelope" : envelope
+  }
+).toMaster()
+
+const playSynthOne = function() {
+    synthOne.triggerAttackRelease(state.synthOneRoot, '8n')
+
+}
+
+const synthTwo = new Tone.Synth(
   {
     "oscillator" : { "type" : "triangle" },
     "envelope" : envelope
   }
 ).toMaster()
 
-const playSynth = function() {
-    synth.triggerAttackRelease(currentRootNote, '8n')
+const playSynthTwo = function() {
+  synthTwo.triggerAttackRelease(state.synthTwoRoot, '8n')
 
 }
-
 
 // View ***************************************************************************
-const currentRootNoteView = $('#current-root-note')
+const leftHandView = $('#left-hand')
+const rightHandView = $('#right-hand')
 
-const setCurrentRootNoteView = function(noteDisplay) {
-  currentRootNoteView.html(noteDisplay)
+const setLeftHandView = function(noteDisplay) {
+  leftHandView.html(noteDisplay)
 }
 
+const setRightHandView = function(noteDisplay) {
+  rightHandView.html(noteDisplay)
+}
 
 // Boss ***************************************************************************
-const interpretKeypress = function(stuff) {
-  setCurrentRootNote(stuff)
-  setCurrentRootNoteView(currentRootNote)
-  playSynth(currentRootNote)
+const interpretKeypress = function(listenerSet, change) {
+  console.log(listenerSet, change)
+  switch (listenerSet) {
+    case 'general':
+      setRootNote('synthOne', change)
+      setLeftHandView(state.synthOneRoot)
+      playSynthOne(state.synthOneRoot)
+      break
+    case 'left':
+      setRootNote('synthOne', change)
+      setLeftHandView(state.synthOneRoot)
+      playSynthOne(state.synthOneRoot)
+      break
+    case 'right':
+      setRootNote('synthTwo', change)
+      setRightHandView(state.synthTwoRoot)
+      playSynthTwo(state.synthTwoRoot)
+      break
+  }
 }
+
 
 
 // Keypress *************************************************************************
