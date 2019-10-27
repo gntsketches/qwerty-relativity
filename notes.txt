@@ -1,0 +1,18 @@
+TODO
+  figure register many to get rh/lh switch happening
+
+mode shifting:
+  trigger modes:
+    triggerAttackRelease
+    triggerAttack/triggerRelease
+    note sustain - space to turn on/off
+  pitch selection:
+    moving root
+    fixed root (in note sustain mode: space returns to root note, any same pitch toggles on/off on second press)
+      do you want to have note sustain mode in fixed root mode at all...
+
+"shift" modifier - moves root pitch without triggering note
+
+how to:
+  keyup & keydown
+    will need a "down" handler as usual
