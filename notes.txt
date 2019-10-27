@@ -1,6 +1,10 @@
 TODO
   figure register many to get rh/lh switch happening
 
+how to:
+  keyup & keydown
+    will need a "down" handler as usual
+
 mode shifting:
   trigger modes:
     triggerAttackRelease
@@ -11,8 +15,29 @@ mode shifting:
     fixed root (in note sustain mode: space returns to root note, any same pitch toggles on/off on second press)
       do you want to have note sustain mode in fixed root mode at all...
 
-"shift" modifier - moves root pitch without triggering note
+"shift" modifier - moves root pitch without triggering note (in any mode)
 
-how to:
-  keyup & keydown
-    will need a "down" handler as usual
+SOUND PARAMS:
+  gain
+  portamento
+  synth type
+  a
+  d
+  s
+  r
+  vibrato depth
+  vibrato rate
+  delay on/off
+  delay time
+  delay feed
+
+  Advanced:
+    filter
+
+
+
+
+
+hmm:
+  may want a modifiable "reset" quick fix in case you get lost.
+    (eg: ctrl-x sets note to C3)
