@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Qwerty Tones for Vi Enthusiasts</title>
+  <title>Split keyboard QWERTY Synth</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,8 +20,8 @@
 
 <body>
 
-<div id="left-hand">none</div>
-<div id="right-hand">none</div>
+  <div id="left-hand">(loading)</div>
+  <div id="right-hand">(loading)</div>
 
 
 
@@ -33,9 +33,10 @@
   <script src="js/plugins.js"></script>
 <!--  <script src="js/vendor/dmauro-Keypress-70a58fb/keypress-2.1.5.min.js"></script>-->
   <!-- minified version is not doing is_exclusive properly -->
+<!--  or - actually maybe not. looks like using is_sequence does what you want, but still a conflict with that false -->
   <script src="js/vendor/dmauro-Keypress-70a58fb/keypress_2_1_5.js"></script>
 
-  <script src="js/pitch_shifts.js"></script>
+  <script src="js/key_listeners.js"></script>
   <script src="js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->

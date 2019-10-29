@@ -1,6 +1,6 @@
 
 
-const general_pitch_shifts = [
+const general_combos = [
   {
     "keys": "control z",
     "on_keydown": function () {
@@ -14,16 +14,16 @@ const general_pitch_shifts = [
     "keys": "control /",
     "on_keydown": function () {
       console.log('control /')
-      interpretKeypress('general', 'ctrl-z')
+      interpretKeypress('general', 'ctrl-/')
     },
-    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": true,
     "is_exclusive": true,
   }
 ]
 
 
-// LH PITCH SHIFTS *************************************************************************************************
-const LH_pitch_shift = [
+// LH  *************************************************************************************************
+const LH_keys = [
   {
     "keys": "space",
     "on_keydown": function () {
@@ -167,8 +167,8 @@ const LH_pitch_shift = [
   }
 ]
 
-// RH PITCH SHIFTS *************************************************************************************************
-const RH_pitch_shift = [
+// RH  *************************************************************************************************
+const RH_keys = [
 
   {
     "keys": "space",
@@ -210,7 +210,7 @@ const RH_pitch_shift = [
     "keys": "l",
     "on_keydown": function () {
       // console.log('s')
-      interpretKeypress('right', '1')
+      interpretKeypress('right', 'l')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
     "is_exclusive": true,
@@ -227,6 +227,14 @@ const RH_pitch_shift = [
     "keys": "o",
     "on_keydown": function () {
       interpretKeypress('right', 'o')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+    "is_exclusive": true,
+  },
+  {
+    "keys": "y",
+    "on_keydown": function () {
+      interpretKeypress('right', 'y')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
     "is_exclusive": true,

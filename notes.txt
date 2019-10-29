@@ -1,5 +1,7 @@
 TODO
-  figure register many to get rh/lh switch happening
+  current dev plan is to follow along with these tuts: https://www.youtube.com/playlist?list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f
+    goal is to get this to a pub/sub pattern so that views and audio auto-update on their relevant state changes
+    ... but who's got time for that???
 
 how to:
   keyup & keydown
@@ -17,27 +19,33 @@ mode shifting:
 
 "shift" modifier - moves root pitch without triggering note (in any mode)
 
-SOUND PARAMS:
-  gain
-  portamento
+
+sculpt hand: param editing vs key-responsive sound manipulation
+
+PARAM TREE:
+  basic
+    gain portamento detune
   synth type
-  a
-  d
-  s
-  r
-  vibrato depth
-  vibrato rate
-  delay on/off
-  delay time
-  delay feed
-
-  Advanced:
+    saw sin tri etc...
+  envelope
+    adsr
+  effects
     filter
-
-
+    delay
+      delay on/off delay time delay feed
+    tremolo
+    vibrato
+    chorus
+    phaser
+  presets
+    1 2 3 4 5
 
 
 
 hmm:
   may want a modifiable "reset" quick fix in case you get lost.
     (eg: ctrl-x sets note to C3)
+
+
+parking lot:
+  make-your own presets
