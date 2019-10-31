@@ -1,11 +1,34 @@
 TODO
-  current dev plan is to follow along with these tuts: https://www.youtube.com/playlist?list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f
-    goal is to get this to a pub/sub pattern so that views and audio auto-update on their relevant state changes
-    ... but who's got time for that???
+  - expand portamento and vibrato range/gradation
+  - add synth options
+  - add gain options
+
+  TODO DEV
+    current dev plan is to follow along with these tuts: https://www.youtube.com/playlist?list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f
+      goal is to get this to a pub/sub pattern so that views and audio auto-update on their relevant state changes
+      ... but who's got time for that???
+    z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
+
+
 
 how to:
   keyup & keydown
     will need a "down" handler as usual
+
+
+
+
+expressive split qwerty
+!yes! - think ("vim-style") where a current pitch is moved around by interval, rather than playing a specific note :
+(Enter) option to trigger & hold note
+(Tab) toggles Mode where the base pitch stays fixed (on spacebar)
+off-hand controls
+can port a mento be adjusted while a note is held?
+https://noisehack.com/how-to-build-supersaw-synth-web-audio-api/
+
+
+
+
 
 mode shifting:
   trigger modes:
@@ -20,7 +43,14 @@ mode shifting:
 "shift" modifier - moves root pitch without triggering note (in any mode)
 
 
-sculpt hand: param editing vs key-responsive sound manipulation
+sculpt hand hmm: param editing vs key-responsive sound manipulation?
+
+tab/enter/etc. to toggle 'boards'
+
+Board 1:
+  Port | Vibrato | Gain | Synthtype
+Board 2:
+  Attack | Decay | Sustain | Release
 
 PARAM TREE:
   basic
@@ -30,17 +60,17 @@ PARAM TREE:
   envelope
     adsr
   effects
-    filter
-    delay
-      delay on/off delay time delay feed
-    tremolo
     vibrato
+    filter
+    tremolo
     chorus
     phaser
+    delay
+      delay on/off delay time delay feed
   presets
     1 2 3 4 5
 
-
+pitch bend with .detune and linearRampToValueAtTime : https://github.com/Tonejs/Tone.js/wiki/Signals
 
 hmm:
   may want a modifiable "reset" quick fix in case you get lost.
