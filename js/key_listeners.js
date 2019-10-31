@@ -7,8 +7,8 @@ const general_combos = [
       console.log('control z')
       interpretKeypress('general', 'ctrl-z')
     },
-    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": true,
-    "is_exclusive": true,
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+    "is_exclusive": false,
   },
   {
     "keys": "control /",
@@ -16,8 +16,8 @@ const general_combos = [
       console.log('control /')
       interpretKeypress('general', 'ctrl-/')
     },
-    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": true,
-    "is_exclusive": true,
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+    "is_exclusive": false,
   }
 ]
 
@@ -31,7 +31,8 @@ const LH_keys = [
       interpretKeypress('left', 'space')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
+
   },
   {
     "keys": "f",
@@ -40,7 +41,7 @@ const LH_keys = [
       interpretKeypress('left', 'f')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "d",
@@ -49,7 +50,7 @@ const LH_keys = [
       interpretKeypress('left', 'd')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "g",
@@ -58,7 +59,7 @@ const LH_keys = [
       interpretKeypress('left', 'g')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "s",
@@ -67,7 +68,7 @@ const LH_keys = [
       interpretKeypress('left', 's')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "r",
@@ -75,7 +76,7 @@ const LH_keys = [
       interpretKeypress('left', 'r')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "e",
@@ -83,7 +84,7 @@ const LH_keys = [
       interpretKeypress('left', 'e')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "t",
@@ -91,7 +92,7 @@ const LH_keys = [
       interpretKeypress('left', 't')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "w",
@@ -99,7 +100,7 @@ const LH_keys = [
       interpretKeypress('left', 'w')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "4",
@@ -107,7 +108,7 @@ const LH_keys = [
       interpretKeypress('left', '4')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "3",
@@ -115,7 +116,7 @@ const LH_keys = [
       interpretKeypress('left', '3')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "5",
@@ -123,7 +124,7 @@ const LH_keys = [
       interpretKeypress('left', '5')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "2",
@@ -131,7 +132,7 @@ const LH_keys = [
       interpretKeypress('left', '2')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "c",
@@ -139,7 +140,7 @@ const LH_keys = [
       interpretKeypress('left', 'c')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "x",
@@ -147,7 +148,7 @@ const LH_keys = [
       interpretKeypress('left', 'x')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "v",
@@ -155,7 +156,7 @@ const LH_keys = [
       interpretKeypress('left', 'v')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "z",
@@ -163,7 +164,65 @@ const LH_keys = [
       interpretKeypress('left', 'z')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
+  },
+
+  // DOUBLES
+  {
+    "keys": "q w",
+    "on_keydown": function () {
+      interpretKeypress('left', 'qw')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "q e",
+    "on_keydown": function () {
+      interpretKeypress('left', 'qe')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "q r",
+    "on_keydown": function () {
+      interpretKeypress('left', 'qr')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "q t",
+    "on_keydown": function () {
+      interpretKeypress('left', 'qt')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "a s",
+    "on_keydown": function () {
+      interpretKeypress('left', 'as')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "a d",
+    "on_keydown": function () {
+      interpretKeypress('left', 'ad')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "a f",
+    "on_keydown": function () {
+      interpretKeypress('left', 'af')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "a g",
+    "on_keydown": function () {
+      interpretKeypress('left', 'ag')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
   }
 ]
 
@@ -177,7 +236,7 @@ const RH_keys = [
       interpretKeypress('right', 'space')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "j",
@@ -186,7 +245,7 @@ const RH_keys = [
       interpretKeypress('right', 'j')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "k",
@@ -195,7 +254,7 @@ const RH_keys = [
       interpretKeypress('right', 'k')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "h",
@@ -204,7 +263,7 @@ const RH_keys = [
       interpretKeypress('right', 'h')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "l",
@@ -213,7 +272,7 @@ const RH_keys = [
       interpretKeypress('right', 'l')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "i",
@@ -221,7 +280,7 @@ const RH_keys = [
       interpretKeypress('right', 'i')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "o",
@@ -229,7 +288,7 @@ const RH_keys = [
       interpretKeypress('right', 'o')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "y",
@@ -237,7 +296,7 @@ const RH_keys = [
       interpretKeypress('right', 'y')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "u",
@@ -245,15 +304,7 @@ const RH_keys = [
       interpretKeypress('right', 'u')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
-  },
-  {
-    "keys": "p",
-    "on_keydown": function () {
-      interpretKeypress('right', 'p')
-    },
-    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "8",
@@ -261,7 +312,7 @@ const RH_keys = [
       interpretKeypress('right', '8')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "9",
@@ -269,7 +320,7 @@ const RH_keys = [
       interpretKeypress('right', '9')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "7",
@@ -277,7 +328,7 @@ const RH_keys = [
       interpretKeypress('right', '7')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "0",
@@ -285,7 +336,7 @@ const RH_keys = [
       interpretKeypress('right', '0')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "m",
@@ -293,7 +344,7 @@ const RH_keys = [
       interpretKeypress('right', 'm')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": ",",
@@ -301,7 +352,7 @@ const RH_keys = [
       interpretKeypress('right', ',')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": "n",
@@ -309,7 +360,7 @@ const RH_keys = [
       interpretKeypress('right', 'n')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
   },
   {
     "keys": ".",
@@ -317,6 +368,65 @@ const RH_keys = [
       interpretKeypress('right', '.')
     },
     "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
-    "is_exclusive": true,
+    "is_solitary": true,
+  },
+
+  // DOUBLES
+  {
+    "keys": "p o",
+    "on_keydown": function () {
+      interpretKeypress('right', 'po')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "p i",
+    "on_keydown": function () {
+      interpretKeypress('right', 'pi')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "p u",
+    "on_keydown": function () {
+      interpretKeypress('right', 'pu')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "p y",
+    "on_keydown": function () {
+      interpretKeypress('right', 'py')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "; l",
+    "on_keydown": function () {
+      interpretKeypress('right', ';l')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "; k",
+    "on_keydown": function () {
+      interpretKeypress('right', ';k')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "; j",
+    "on_keydown": function () {
+      interpretKeypress('right', ';j')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
+  },
+  {
+    "keys": "; h",
+    "on_keydown": function () {
+      interpretKeypress('right', ';h')
+    },
+    "this": this, "prevent_default": true, "prevent_repeat": true, "is_unordered": true, "is_sequence": false,
   }
+
 ]

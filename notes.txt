@@ -8,7 +8,7 @@ TODO
       goal is to get this to a pub/sub pattern so that views and audio auto-update on their relevant state changes
       ... but who's got time for that???
     z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
-
+      https://codepen.io/gntsketches/pen/qBBVOLM?editors=1010
 
 
 how to:
