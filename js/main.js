@@ -32,22 +32,23 @@ const constants = {
   },
 
   LH_pitch_keys : {
-    'space': 'cur',
-    'f': '+m2', 'd': '-m2', 'g': '+M2', 's': '-M2',
-    'r': '+m3', 'e': '-m3', 't': '+M3', 'w': '-M3',
-    '4': '+P4', '3': '-P4', '5': '+tt', '2': '-tt',
-    'c': '+P5', 'x': '-P5', 'v': '+8v', 'z': '-8v',
-    'qw': '-M6', 'qe': '-m6', 'qr': '+m6', 'qt': '+M6',
-    'as': '-M7', 'ad': '-m7', 'af': '+m7', 'ag': '+M7'
+    'space': 'cur', 'z': 'cur',
+    '2': '-tt', '3': '-P4', '4': '+P4', '5': '+tt',
+        'qw': '-M6', 'qe': '-m6', 'qr': '+m6', 'qt': '+M6',
+    'w': '-M3', 'e': '-m3', 'r': '+m3', 't': '+M3',
+        'as': '-M7', 'ad': '-m7', 'af': '+m7', 'ag': '+M7',
+    's': '-M2', 'd': '-m2', 'f': '+m2', 'g': '+M2',
+    'x': '-8v', 'c': '-P5', 'v': '+P5', 'b': '+8v',
   },
 
   RH_pitch_keys : {
-    'j': '+m2', 'k': '-m2', 'h': '+M2', 'l': '-M2',
-    'u': '+m3', 'i': '-m3', 'y': '+M3', 'o': '-M3',
-    '8': '+P4', '9': '-P4', '7': '+tt', '0': '-tt',
-    'm': '+P5', ',': '-P5', 'n': '+8v', '.': '-8v',
-    'po': '-M6', 'pi': '-m6', 'pu': '+m6', 'py': '+M6',
-    ';l': '-M7', ';k': '-m7', ';j': '+m7', ';h': '+M7'
+    'space': 'cur', '/': 'cur',
+    '7': '+tt', '8': '+P4', '9': '-P4', '0': '-tt',
+        'py': '+M6', 'pu': '+m6', 'pi': '-m6', 'po': '-M6',
+    'y': '+M3', 'u': '+m3', 'i': '-m3', 'o': '-M3',
+        ';h': '+M7', ';j': '+m7', ';k': '-m7', ';l': '-M7',
+    'h': '+M2', 'j': '+m2', 'k': '-m2', 'l': '-M2',
+    'n': '+8v', 'm': '+P5', ',': '-P5', '.': '-8v',
   },
 
 
@@ -137,7 +138,7 @@ const model = (function() {
   const setCurrentRootNote = function(thing) {
     let noteIndex = constants.fullRange.indexOf(state.currentRootNote)
     noteIndex = noteIndex + constants.intervalConversions[thing]
-    if (noteIndex > 0 && noteIndex <= constants.fullRange.length-1) {
+    if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
       state.currentRootNote = constants.fullRange[noteIndex]
     }
   }
