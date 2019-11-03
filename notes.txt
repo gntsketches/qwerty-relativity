@@ -10,6 +10,7 @@ TODO
     z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
       https://codepen.io/gntsketches/pen/qBBVOLM?editors=1010
 
+"is_solitary" - may be slowing things down because you can't trigger a key if another is still held.
 
 how to:
   keyup & keydown
