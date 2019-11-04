@@ -21,10 +21,9 @@ const model = (function() {
     pubSub.publish('swapHands')
   }
 
-  const setCurrentRootNote = function(thing) {
-    console.log('thing:', thing)
+  const setCurrentRootNote = function(interval) {
     let noteIndex = constants.fullRange.indexOf(state.currentRootNote)
-    noteIndex = noteIndex + constants.intervalConversions[thing]
+    noteIndex = noteIndex + constants.intervalConversions[interval]
     if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
       state.currentRootNote = constants.fullRange[noteIndex]
     }
@@ -185,9 +184,11 @@ const interpretKeypress = function(zone, pressed) {
       break
     case 'left':
       if (model.state.handed==='left') {
+      // if (model.state.leftHand==='pitches') {
         model.setRoot(constants.LH_pitch_keys[pressed])
         audio.play()
       } else {
+      // } else if (model.state.leftHand==='params' {
         model.updateParam(pressed)
       }
       break

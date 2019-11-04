@@ -1,6 +1,15 @@
 
 TODO DEV
-  hmmm
+  Do two synths first - it'll save refactoring time later
+    each hand should be able to be in all the different modes
+    Oh! of course you should be able to play both synths (simultaneously) with just one hand!
+  KeyDown vs Up...
+    so just add an on_keyup to listeners with a zone for that
+    probs won't change interpretKeypress much.
+    you'll need a .stop method on Audio
+    audio will do conditionally depending on mode
+    is it a problem to call .stop in interpretKeypress? (to triggerRelease on a triggerAttackReleased synth?)
+      if so you can either send .stop conditionally or just block it in Audio
 
 
 TODO DEV MOAR
@@ -8,6 +17,16 @@ TODO DEV MOAR
     https://codepen.io/gntsketches/pen/qBBVOLM?editors=1010
     "is_solitary" - may be slowing things down because you can't trigger a key if another is still held.
     let's fork keypress! & add an 'excludes' option
+
+TWO SYNTHS:
+  with interpretKeypress it seems we could make a more general case
+    to accommodate more diverse options like two synths.
+    ie: left -> doWhatLeftHandDoes, right -> doWhatRightHandDoes
+  UI
+    ctrl...  a: synth1, s: synth2, d: synth1 params, f: synth2 params
+    ctrl shift...  a: synth1 LH & synth1 params RH, s: synth2 LH & synth2 params RH,
+    ctrl... z: swap hands, x: sw ap synths/synth params 1<>2,
+
 
 TODO
   - add synth options
@@ -84,3 +103,4 @@ hmm:
 
 parking lot:
   make-your own presets
+  polysynth - possible issue with which-note-is-released? or maybe not. I think triggerRelease accepts a note.
