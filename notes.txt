@@ -1,16 +1,22 @@
+
+TODO DEV
+  pubSub:
+    holding off on adding audio.play() to pubsub... - how will 'silent' root note change affect things?
+    maybe build that feature soon...
+
+Hmmm.
+  seems like there was some thought that the whole left/right hand listeners might be refactored...
+
+TODO DEV MOAR
+  z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
+    https://codepen.io/gntsketches/pen/qBBVOLM?editors=1010
+    "is_solitary" - may be slowing things down because you can't trigger a key if another is still held.
+    let's fork keypress! & add an 'excludes' option
+
 TODO
-  - expand portamento and vibrato range/gradation
   - add synth options
   - add gain options
 
-  TODO DEV
-    current dev plan is to follow along with these tuts: https://www.youtube.com/playlist?list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f
-      goal is to get this to a pub/sub pattern so that views and audio auto-update on their relevant state changes
-      ... but who's got time for that???
-    z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
-      https://codepen.io/gntsketches/pen/qBBVOLM?editors=1010
-
-"is_solitary" - may be slowing things down because you can't trigger a key if another is still held.
 
 how to:
   keyup & keydown

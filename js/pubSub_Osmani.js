@@ -1,58 +1,54 @@
-var pubsub = (function(myObject) {
+var pubSub = {};
 
-  // Storage for topics that can be broadcast
+(function(myObject) {
+
+  // Storage for eventTypes that can be broadcast
   // or listened to
-  var topics = {};
+  var eventTypes = {};
 
   // A topic identifier
   var subUid = -1;
 
-  // Publish or broadcast events of interest
-  // with a specific topic name and arguments
-  // such as the data to pass along
-  myObject.publish = function( topic, args ) {
+  // Publish or broadcast events of interest with a specific topic name and arguments such as the data to pass along
+  myObject.publish = function( eventName, args ) {
 
-    if ( !topics[topic] ) {
+    if ( !eventTypes[eventName] ) {
       return false;
     }
 
-    var subscribers = topics[topic],
+    var subscribers = eventTypes[eventName],
       len = subscribers ? subscribers.length : 0;
 
     while (len--) {
-      subscribers[len].func( topic, args );
+      subscribers[len].func(args);
     }
 
     return this;
   };
 
-  // Subscribe to events of interest
-  // with a specific topic name and a
-  // callback function, to be executed
-  // when the topic/event is observed
+  // Subscribe to events of interest with a specific topic name and a
+  // callback function, to be executed when the topic/event is observed
   myObject.subscribe = function( topic, func ) {
 
-    if (!topics[topic]) {
-      topics[topic] = [];
+    if (!eventTypes[topic]) {
+      eventTypes[topic] = [];
     }
 
     var token = ( ++subUid ).toString();
-    topics[topic].push({
+    eventTypes[topic].push({
       token: token,
       func: func
     });
     return token;
   };
 
-  // Unsubscribe from a specific
-  // topic, based on a tokenized reference
-  // to the subscription
+  // Unsubscribe from a specific topic, based on a tokenized reference to the subscription
   myObject.unsubscribe = function( token ) {
-    for ( var m in topics ) {
-      if ( topics[m] ) {
-        for ( var i = 0, j = topics[m].length; i < j; i++ ) {
-          if ( topics[m][i].token === token ) {
-            topics[m].splice( i, 1 );
+    for ( var m in eventTypes ) {
+      if ( eventTypes[m] ) {
+        for ( var i = 0, j = eventTypes[m].length; i < j; i++ ) {
+          if ( eventTypes[m][i].token === token ) {
+            eventTypes[m].splice( i, 1 );
             return token;
           }
         }
@@ -60,4 +56,4 @@ var pubsub = (function(myObject) {
     }
     return this;
   };
-}( {} ));
+})( pubSub )
