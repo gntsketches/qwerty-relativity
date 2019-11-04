@@ -1,11 +1,7 @@
 
 TODO DEV
-  pubSub:
-    holding off on adding audio.play() to pubsub... - how will 'silent' root note change affect things?
-    maybe build that feature soon...
+  hmmm
 
-Hmmm.
-  seems like there was some thought that the whole left/right hand listeners might be refactored...
 
 TODO DEV MOAR
   z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
@@ -16,6 +12,8 @@ TODO DEV MOAR
 TODO
   - add synth options
   - add gain options
+
+seems like there was some thought that the whole left/right hand listeners might be refactored...
 
 
 how to:

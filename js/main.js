@@ -188,7 +188,7 @@ const interpretKeypress = function(zone, pressed) {
         model.setRoot(constants.LH_pitch_keys[pressed])
         audio.play()
       } else {
-        model.updateParam(pressed) // state
+        model.updateParam(pressed)
       }
       break
     case 'right':
@@ -196,7 +196,23 @@ const interpretKeypress = function(zone, pressed) {
         model.setRoot(constants.RH_pitch_keys[pressed])
         audio.play()
       } else {
-        model.updateParam(pressed) // state
+        model.updateParam(pressed)
+      }
+      break
+    case 'left-shifted':
+      if (model.state.handed==='left') {
+        model.setRoot(constants.LH_pitch_keys[pressed])
+      } else {
+        // do something special?
+        model.updateParam(pressed)
+      }
+      break
+    case 'right-shifted':
+      if (model.state.handed==='right') {
+        model.setRoot(constants.RH_pitch_keys[pressed])
+      } else {
+        // do something special?
+        model.updateParam(pressed)
       }
       break
   }
