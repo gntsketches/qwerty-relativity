@@ -3,6 +3,13 @@ TODO DEV
   Do two synths first - it'll save refactoring time later
     each hand should be able to be in all the different modes
     Oh! of course you should be able to play both synths (simultaneously) with just one hand!
+    So can you do both params with one hand?
+      trickier - not all params will work for both...
+      but maybe that's ok. like you can still edit a fmsynth param on a regular synth, it just doesn't do anything
+      but reading them, hmmm. then each hand needs two displays.
+      SO let's not do that, too complicated.
+      JUST DO one 'thing' for each hand'
+        AND have a 'play both' or 'link synths' option so both are played (by either hand)
   KeyDown vs Up...
     so just add an on_keyup to listeners with a zone for that
     probs won't change interpretKeypress much.
@@ -23,9 +30,10 @@ TWO SYNTHS:
     to accommodate more diverse options like two synths.
     ie: left -> doWhatLeftHandDoes, right -> doWhatRightHandDoes
   UI
+    (ctrl: q: start/stop recording)
     ctrl...  a: synth1, s: synth2, d: synth1 params, f: synth2 params
     ctrl shift...  a: synth1 LH & synth1 params RH, s: synth2 LH & synth2 params RH,
-    ctrl... z: swap hands, x: sw ap synths/synth params 1<>2,
+    ctrl... z: swap hands, x: swap synths/synth params 1<>2, c: link/unlink synths, v: switch spacebar hand
 
 
 TODO
