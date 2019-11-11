@@ -7,9 +7,9 @@ const model = (function() {
 
   const state = {
 
-    leftHand: 'synth1',
-    rightHand: 'params1',
-    spacebar: 'left',
+    leftHand: 'params1',
+    rightHand: 'synth1',
+    spacebar: 'right',
     synthsLinked: false,
     paramsLinked: false,
 

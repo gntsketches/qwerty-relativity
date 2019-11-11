@@ -7,7 +7,6 @@ body {
 }
 
 #left-hand {
-  background: #886655;
   color: whitesmoke;
   grid-column-start: 2;
   grid-column-end: 3;
@@ -17,7 +16,6 @@ body {
 }
 
 #right-hand {
-  background: #886655;
   color: whitesmoke;
   grid-column-start: 3;
   grid-column-end: 4;
@@ -26,15 +24,21 @@ body {
   text-align: center;
 }
 
+.synth1-display {
+  height: 100%;
+  background: #779944;
+}
+
+.synth2-display {
+  height: 100%;
+  background: #7744aa;
+}
 
 .which-synth {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
 
-/*.pitch-display {*/
-/*  padding-top: 0;*/
-/*}*/
 
 .synth1-pitch,
 .synth2-pitch {
@@ -42,9 +46,6 @@ body {
   line-height: 4rem;
 }
 
-/*.params-display {*/
-/*  padding-top: 0;*/
-/*}*/
 
 .param-container {
   padding-top: 0.5rem;

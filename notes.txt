@@ -1,7 +1,12 @@
 
 TODO DEV
-  TWO SYNTHS
-    fork keypress
+  what's next?
+    improving the ctrl- shortcuts
+    sharp/flat display
+    refactor main / Model / Audio?
+    add root note mode
+    add sustain mode
+    add keydown/keyup mode
 
   DEV QUESTIONS
     managing lots of conditional logic here...
@@ -25,7 +30,7 @@ TODO DEV
 TODO DEV Other
   +/- and 1/2 raise/lower volume for a synth!
   shift-space resets base to C3 (later can be adjustable)
-  ctrl-space switches spacebar huj
+  ctrl-space switches spacebar
 
 TODO DEV MOAR
   z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...

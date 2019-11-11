@@ -11,10 +11,10 @@ const view = (function() {
     const pitch = model.state[synth].pitch
 
     return $([
-      // "<div class='pitch-display'>",
+      "<div class='" + synth + "-display'>",
       "  <div class='which-synth'>" + synth + "</div>",
       "  <div class='" + synth + "-pitch'>" + pitch + "</div>",
-      // "</div>"
+      "</div>"
     ].join("\n"));
   }
 
@@ -24,13 +24,13 @@ const view = (function() {
     const value =  params[editingParam]
 
     return $([
-      // "<div class='params-display'>",
+      "<div class='" + synth + "-display'>",
       "  <div class='which-synth'>" + synth + "</div>",
       "  <div class='param-container'>",
       "    <span class='editing-param'>" + editingParam + ": </span>",
       "    <span class='param-value'>" + value + "</span>",
-      "  </div>"
-      // "</div>"
+      "  </div>",
+      "</div>"
     ].join("\n"));
   }
 
