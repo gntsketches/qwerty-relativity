@@ -9,8 +9,9 @@ const model = (function() {
 
     leftHand: 'synth1',
     rightHand: 'params1',
-    synthsLinked: false,
     spacebar: 'left',
+    synthsLinked: false,
+    paramsLinked: false,
 
     synth1: {
       pitch: 'C3',
@@ -33,12 +34,12 @@ const model = (function() {
   const setLeftHand = function (setting) {
     state.leftHand = setting
     console.log('left', state.leftHand)
-    view.initView()
+    view.initView() // for consistency should you pubSub?
   }
 
   const setRightHand = function (setting) {
     state.rightHand = setting
-    view.initView()
+    view.initView() // for consistency should you pubSub?
   }
 
   const swapHands = function() {

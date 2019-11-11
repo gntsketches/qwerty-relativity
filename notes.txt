@@ -10,14 +10,15 @@ TODO DEV
         trickier - not all params will work for both...
         but maybe that's ok. like you can still edit a fmsynth param on a regular synth, it just doesn't do anything
         but reading them, hmmm. then each hand needs two displays.
-        SO let's not do that, too complicated.
+        but it doesn't. each hand displays itself, and when synth/params are linked, the active hand controls the other as it's able.
         JUST DO one 'thing' for each hand'
-          AND have a 'play both' or 'link synths' option so both are played (by either hand)
+        AND have a 'play both' or 'link synths' option so both are played (by either hand)
   VIEW
     add synth# identifier in each view build
   DEV QUESTIONS
     managing lots of conditional logic here...
-    referencing things eg: model.state[synth] where synth is received from param
+    referencing things eg: model.state[synth] where synth is received from argument
+      synth1, param1, multiple usages confusing. eg: uses in the view
     OR state[synthNum].params[state[synthNum].editingParam] = value
     OR } else if ( (state.synth1.editingParam==='Portamento' && pressed in constants.portamento_keys) ||
       somehow seems fishy
