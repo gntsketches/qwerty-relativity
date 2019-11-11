@@ -4,7 +4,7 @@
 const view = (function() {
   const leftHandDOM = $('#left-hand')
   const rightHandDOM = $('#right-hand')
-  let pitch1DOM = null // both lh and rh can have this, so want an array
+  let pitch1DOM = null
   let pitch2DOM = null
 
   const buildPitchView = function(synth) {
