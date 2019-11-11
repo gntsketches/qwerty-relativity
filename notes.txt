@@ -50,9 +50,10 @@ TWO SYNTHS:
     ie: left -> doWhatLeftHandDoes, right -> doWhatRightHandDoes
   UI
     (ctrl: q: start/stop recording)
-    ctrl...  a: synth1, s: synth2, d: synth1 params, f: synth2 params
-    ctrl shift...  a: synth1 LH & synth1 params RH, s: synth2 LH & synth2 params RH,
-    ctrl... z: swap hands, x: swap synths/synth params 1<>2, c: link/unlink synths, v: switch spacebar hand
+    ctrl...  a: toggle lh synth, s: toggle lh params, d: toggle rh synth, f: toggle rh params
+    ctrl... z: swap hands, x: lh s1 rh p1, c: lh s2 rh p2, v: lh p1 rh s1, b: lh p2 rh s2
+    ctrl l: link/unlink synths,
+    ctrl space: switch spacebar hand
 
 TODO
   - add synth options

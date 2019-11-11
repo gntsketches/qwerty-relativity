@@ -8,42 +8,52 @@ const view = (function() {
   let pitches1View = null, pitches2View = null,
       params1View = null, params2View = null
 
-  const buildNoteView = function(note) {
-    return "<div class='current-note'>"  + note + "</div>"
+  const buildPitchView = function(synth) {
+    const pitch = model.state[synth].pitch
+
+    return $([
+      // "<div class='pitch-display'>",
+      "  <div class='which-synth'>" + synth + "</div>",
+      "  <div class='pitch'>" + pitch + "</div>",
+      // "</div>"
+    ].join("\n"));
   }
 
-  const buildSoundParamsView = function(param, value) {
+  const buildSoundParamsView = function(synth) {
+    const editingParam = model.state[synth].editingParam
+    const params = model.state[synth].params
+    const value =  params[editingParam]
+
     return $([
-      "<div class='sound-params'>",
-      "  <div class='editing-param'>" + param + "</div>",
-      "  <div class='param-value'>" + value + "</div>",
-      "</div>"
+      // "<div class='params-display'>",
+      "  <div class='which-synth'>" + synth + "</div>",
+      "  <div class='param-container'>",
+      "    <span class='editing-param'>" + editingParam + ": </span>",
+      "    <span class='param-value'>" + value + "</span>",
+      "  </div>"
+      // "</div>"
     ].join("\n"));
   }
 
 
   const updatePitches1View = function() {
     console.log('changing pitch1 view...', model.state.synth1.pitch)
-    pitches1View.html(buildNoteView(model.state.synth1.pitch))
+    pitches1View.html(buildPitchView('synth1'))
   }
 
   const updatePitches2View = function() {
     console.log('changing pitch2 view...', model.state.synth2.pitch)
-    pitches2View.html(buildNoteView(model.state.synth2.pitch))
+    pitches2View.html(buildPitchView('synth2'))
   }
 
   const updateParams1View = function() {
     console.log('updating params1 view')
-    const editingParam = model.state.synth1.editingParam
-    const params = model.state.synth1.params
-    params1View.html(buildSoundParamsView(editingParam, params[editingParam]))
+    params1View.html(buildSoundParamsView('synth1'))
   }
 
   const updateParams2View = function() {
     console.log('updating params2 view')
-    const editingParam = model.state.synth2.editingParam
-    const params = model.state.synth2.params
-    params2View.html(buildSoundParamsView(editingParam, params[editingParam]))
+    params2View.html(buildSoundParamsView('synth2'))
   }
 
 
