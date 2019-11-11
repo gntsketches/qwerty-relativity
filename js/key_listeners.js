@@ -3,20 +3,56 @@
 const general_combos = [
   {
     "keys": "control z",
-    "on_keydown": function () {
-      console.log('control z')
-      interpretKeypress('general', 'ctrl-z')
-    },
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-z') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
   },
   {
-    "keys": "control /",
-    "on_keydown": function () {
-      console.log('control /')
-      interpretKeypress('general', 'ctrl-/')
-    },
+    "keys": "control a",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-a') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
-  }
+  },
+  {
+    "keys": "control s",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-s') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control f",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-f') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control d",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-d') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+
+
+  {
+    "keys": "control /",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-/') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control '",
+    "on_keydown": function () { interpretKeypress('general', "ctrl-'") },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control ;",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-;') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control l",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-l') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control j",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-k') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
 ]
 
 
@@ -68,23 +104,23 @@ const LH_keys = [
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
   },
   {
-    "keys": "4",
-    "on_keydown": function () { interpretKeypress('left', '4') },
-    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
-  },
-  {
-    "keys": "3",
-    "on_keydown": function () { interpretKeypress('left', '3') },
-    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
-  },
-  {
     "keys": "5",
     "on_keydown": function () { interpretKeypress('left', '5') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
   },
   {
-    "keys": "2",
-    "on_keydown": function () { interpretKeypress('left', '2') },
+    "keys": "4",
+    "on_keydown": function () { interpretKeypress('left', '4') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
+  },
+  {
+    "keys": "6",
+    "on_keydown": function () { interpretKeypress('left', '6') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
+  },
+  {
+    "keys": "3",
+    "on_keydown": function () { interpretKeypress('left', '3') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "is_solitary": true,
   },
   {

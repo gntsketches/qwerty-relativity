@@ -1,15 +1,30 @@
 
 TODO DEV
-  Do two synths first - it'll save refactoring time later
+  TWO SYNTHS
+    build: show which synth is which
+    if both views have same synth, one one has notes change...
+
     each hand should be able to be in all the different modes
     Oh! of course you should be able to play both synths (simultaneously) with just one hand!
-    So can you do both params with one hand?
-      trickier - not all params will work for both...
-      but maybe that's ok. like you can still edit a fmsynth param on a regular synth, it just doesn't do anything
-      but reading them, hmmm. then each hand needs two displays.
-      SO let's not do that, too complicated.
-      JUST DO one 'thing' for each hand'
-        AND have a 'play both' or 'link synths' option so both are played (by either hand)
+      So can you do both params with one hand?
+        trickier - not all params will work for both...
+        but maybe that's ok. like you can still edit a fmsynth param on a regular synth, it just doesn't do anything
+        but reading them, hmmm. then each hand needs two displays.
+        SO let's not do that, too complicated.
+        JUST DO one 'thing' for each hand'
+          AND have a 'play both' or 'link synths' option so both are played (by either hand)
+  VIEW
+    add synth# identifier in each view build
+  DEV QUESTIONS
+    managing lots of conditional logic here...
+    referencing things eg: model.state[synth] where synth is received from param
+    OR state[synthNum].params[state[synthNum].editingParam] = value
+    OR } else if ( (state.synth1.editingParam==='Portamento' && pressed in constants.portamento_keys) ||
+      somehow seems fishy
+    general naming strategies/conventions
+    ? https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html
+    ? https://medium.com/edge-coders/coding-tip-try-to-code-without-if-statements-d06799eed231
+
   KeyDown vs Up...
     so just add an on_keyup to listeners with a zone for that
     probs won't change interpretKeypress much.
@@ -18,6 +33,10 @@ TODO DEV
     is it a problem to call .stop in interpretKeypress? (to triggerRelease on a triggerAttackReleased synth?)
       if so you can either send .stop conditionally or just block it in Audio
 
+TODO DEV Other
+  +/- and 1/2 raise/lower volume for a synth!
+  6th and 7th combos ... is_unordered?
+  shift-space resets base to C3 (later can be adjustable)
 
 TODO DEV MOAR
   z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
@@ -34,7 +53,6 @@ TWO SYNTHS:
     ctrl...  a: synth1, s: synth2, d: synth1 params, f: synth2 params
     ctrl shift...  a: synth1 LH & synth1 params RH, s: synth2 LH & synth2 params RH,
     ctrl... z: swap hands, x: swap synths/synth params 1<>2, c: link/unlink synths, v: switch spacebar hand
-
 
 TODO
   - add synth options
@@ -110,5 +128,7 @@ hmm:
 
 
 parking lot:
-  make-your own presets
+  FEATURE make-your own presets
   polysynth - possible issue with which-note-is-released? or maybe not. I think triggerRelease accepts a note.
+  FEATURE wherein base note of one hand (with fixed base) tracks to other hand,
+    enabling ez-harmonies.

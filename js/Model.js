@@ -6,80 +6,115 @@ console.log('pubSub', pubSub)
 const model = (function() {
 
   const state = {
-    handed: 'left',
-    currentRootNote: 'C3',
-    editingParam: 'Portamento',
-    params: {
-      Portamento: 0,
-      Vibrato: 0
-    },
 
-    leftHand: 'synthOnePitches',
-    rightHand: 'synthOneParams',
+    leftHand: 'synth1',
+    rightHand: 'params1',
     synthsLinked: false,
     spacebar: 'left',
 
-    synthOne: {
-      root: 'C3',
+    synth1: {
+      pitch: 'C3',
       editingParam: 'Portamento',
       params: {
         Portamento: 0,
         Vibrato: 0
       },
     },
-    synthTwo: {
-      root: 'C3',
+    synth2: {
+      pitch: 'C3',
       editingParam: 'Portamento',
       params: {
         Portamento: 0,
         Vibrato: 0
       },
     },
+  }
+
+  const setLeftHand = function (setting) {
+    state.leftHand = setting
+    console.log('left', state.leftHand)
+    view.initView()
+  }
+
+  const setRightHand = function (setting) {
+    state.rightHand = setting
+    view.initView()
   }
 
   const swapHands = function() {
-    // swapHands swaps spacebar!
-    if (state.handed==='right') { state.handed = 'left'}
-    else if (state.handed==='left') { state.handed = 'right'}
+    if (state.spacebar==='left') { state.spacebar = 'right' }
+    else if (state.spacebar==='right') { state.spacebar = 'left' }
+
+
+    // const lh = JSON.parse(state.leftHand)
+    // const rh = JSON.parse(state.rightHand)
+    const lh = state.leftHand, rh = state.rightHand
+    console.log('lh', lh, 'rh', rh)
+    state.leftHand = rh
+    state.rightHand = lh
+    console.log('leftHand', state.leftHand)
+    console.log('rightHand', state.rightHand)
+
     pubSub.publish('swapHands')
   }
 
-  const setCurrentRootNote = function(interval) {
-    let noteIndex = constants.fullRange.indexOf(state.currentRootNote)
+  const setBasePitch = function(synthNum, interval) {
+    let noteIndex = constants.fullRange.indexOf(state[synthNum].pitch)
     noteIndex = noteIndex + constants.intervalConversions[interval]
     if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
-      state.currentRootNote = constants.fullRange[noteIndex]
+      state[synthNum].pitch = constants.fullRange[noteIndex]
     }
-    pubSub.publish('rootNoteChanged', state.currentRootNote)
+    if (synthNum === 'synth1') {
+      pubSub.publish('basePitch1Changed', state[synthNum].pitch)
+    } else if (synthNum === 'synth2') {
+      pubSub.publish('basePitch2Changed', state[synthNum].pitch)
+    }
   }
 
-  const changeEditingParam = function(param) {
-    state.editingParam = param
-    pubSub.publish('soundParamsChanged')
-  }
-
-  const setParam = function(value) {
-    state.params[state.editingParam] = value
-    pubSub.publish('soundParamsChanged')
-  }
-
-  const updateParamFromKey = function(pressed) {
-    console.log('pressed', pressed)
+  const updateParamFromKey = function(synthNum, pressed) {
+    // console.log('pressed', pressed)
     if (pressed in constants.param_select_keys) {
-      changeEditingParam(constants.param_select_keys[pressed])
-    } else if (state.editingParam==='Portamento' && pressed in constants.portamento_keys) {
-      setParam(constants.portamento_keys[pressed])
-    } else if (state.editingParam==='Vibrato' && pressed in constants.vibrato_keys) {
-      setParam(constants.vibrato_keys[pressed])
+      const param = constants.param_select_keys[pressed]
+      // console.log('param', param)
+      changeEditingParam(synthNum, param)
+    } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
+      if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
+           (synthNum==='synth2' && state.synth2.editingParam==='Portamento') ) {
+        setParam(synthNum, constants.portamento_keys[pressed])
+      } else if ( (synthNum==='synth1' && state.synth1.editingParam==='Vibrato') ||
+           (synthNum==='synth2' && state.synth2.editingParam==='Vibrato') ) {
+        setParam(synthNum, constants.vibrato_keys[pressed])
+      }
+    }
+  }
+
+  const changeEditingParam = function(synthNum, param) {
+    state[synthNum].editingParam = param
+    if (synthNum === 'synth1') {
+      pubSub.publish('params1Changed')
+    } else if (synthNum === 'synth2') {
+      pubSub.publish('params2Changed')
+    }
+  }
+
+  const setParam = function(synthNum, value) {
+    // console.log(value)
+    state[synthNum].params[state[synthNum].editingParam] = value
+    if (synthNum === 'synth1') {
+      pubSub.publish('params1Changed')
+    } else if (synthNum === 'synth2') {
+      pubSub.publish('params2Changed')
     }
   }
 
 
   return {
     state: state,
+    setLeftHand: setLeftHand,
+    setRightHand: setRightHand,
     swapHands: swapHands,
-    setRoot: setCurrentRootNote,
-    updateParam: updateParamFromKey
+    setBasePitch: setBasePitch,
+    updateParamFromKey: updateParamFromKey
   }
 
 })()

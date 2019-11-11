@@ -3,72 +3,94 @@
 
 const audio = (function() {
 
-  const synth = new Tone.Synth(
+  const synth1 = new Tone.Synth(
     {
       "oscillator" : { "type" : "triangle" },
       "envelope" : constants.envelope,
-      "volume": -5,
+      "volume": -3,
     }
   )
 
-  const vibrato = new Tone.Vibrato()
-  vibrato.frequency.value = model.state.params.Vibrato
+  const vibrato1 = new Tone.Vibrato()
+  vibrato1.frequency.value = model.state.synth1.params.Vibrato
   const gain = new Tone.Gain()
   gain.gain.value = 0.5
-  synth.connect(vibrato)
-  vibrato.connect(gain)
+  synth1.connect(vibrato1)
+  vibrato1.connect(gain)
   gain.toMaster()
 
-  const synthTwo = new Tone.Synth(
+  const synth2 = new Tone.Synth(
     {
       "oscillator" : { "type" : "sawtooth" },
       "envelope" : constants.envelope,
-      "volume": -12,
+      "volume": -13,
     }
   )
 
-  const vibratoTwo = new Tone.Vibrato()
-  vibratoTwo.frequency.value = model.state.params.Vibrato
-  const gainTwo = new Tone.Gain()
-  gainTwo.gain.value = 0.5
-  synthTwo.connect(vibrato)
-  vibratoTwo.connect(gain)
-  gainTwo.toMaster()
+  const vibrato2 = new Tone.Vibrato()
+  vibrato2.frequency.value = model.state.synth2.params.Vibrato
+  const gain2 = new Tone.Gain()
+  gain2.gain.value = 0.5
+  synth2.connect(vibrato2)
+  vibrato2.connect(gain)
+  gain2.toMaster()
 
-  const playSynth = function() {
-    synth.triggerAttackRelease(model.state.currentRootNote, '8n')
+  const playSynth1 = function() {
+    console.log('play 1')
+    synth1.triggerAttackRelease(model.state.synth1.pitch, '8n')
   }
 
-  // const playSynthTwo = function() {
-  //   synth.triggerAttackRelease(model.state.currentRootNote, '8n')
-  // }
-
-  const setPortamento = function() {
-    synth.portamento = model.state.params.Portamento
+  const setSynth1Portamento = function() {
+    synth1.portamento = model.state.synth1.params.Portamento
   }
 
-  const setVibratoFrequency = function() {
-    vibrato.frequency.value = model.state.params.Vibrato
+  const setSynth1VibratoFrequency = function() {
+    vibrato1.frequency.value = model.state.synth1.params.Vibrato
   }
 
-  const updateCurrentSoundParam = function() {
-    console.log('updating current sound param')
-    switch (model.state.editingParam) {
+  const playSynth2 = function() {
+    console.log('play 2')
+    synth2.triggerAttackRelease(model.state.synth2.pitch, '8n')
+  }
+
+  const setSynth2Portamento = function() {
+    synth2.portamento = model.state.synth2.params.Portamento
+  }
+
+  const setSynth2VibratoFrequency = function() {
+    vibrato2.frequency.value = model.state.synth2.params.Vibrato
+  }
+
+  const updateSynth1Param = function() {
+    // console.log('updating current sound param', model.state)
+    switch (model.state.synth1.editingParam) {
       case 'Portamento':
-        setPortamento()
+        setSynth1Portamento()
         break
       case 'Vibrato':
-        setVibratoFrequency()
-        console.log('vib', vibrato.frequency.value)
+        setSynth1VibratoFrequency()
         break
     }
   }
 
-  pubSub.subscribe('soundParamsChanged', updateCurrentSoundParam)
-  // pubSub.subscribe('synthTwoParamsChanged', updateSynthTwoEditingParam)
+  const updateSynth2Param = function() {
+    console.log('updating current sound param')
+    switch (model.state.synth2.editingParam) {
+      case 'Portamento':
+        setSynth2Portamento()
+        break
+      case 'Vibrato':
+        setSynth2VibratoFrequency()
+        break
+    }
+  }
+
+  pubSub.subscribe('params1Changed', updateSynth1Param)
+  pubSub.subscribe('params2Changed', updateSynth2Param)
 
   return {
-    play: playSynth,
+    playSynth1: playSynth1,
+    playSynth2: playSynth2,
   }
 
 })()

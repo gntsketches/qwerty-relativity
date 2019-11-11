@@ -2,47 +2,76 @@
 // "Controller" ***************************************************************************
 
 const interpretKeypress = function(zone, pressed) {
+  const spacebar = model.state.spacebar
+  const leftHand = model.state.leftHand
+  const rightHand = model.state.rightHand
+
   switch(zone) {
+
+
     case 'general':
-      if (pressed==='ctrl-z' || pressed==='ctrl-/') {
-        model.swapHands()
-      }
+      generalDispatch[pressed]()
       break
+
+
     case 'left':
-      if (model.state.handed==='left') {
-      // if (model.state.leftHand==='synthOnePitches') {
-      //   if (pressed==='space' && model.state.spacebar==='right') { return }
-        model.setRoot(constants.LH_pitch_keys[pressed])
-        audio.play()
-      } else {
-      // } else if (model.state.leftHand==='SynthOneParams' {
-        model.updateParam(pressed)
+      if (pressed==='space' && spacebar==='right') { return }
+      console.log('left')
+
+      if (leftHand==='synth1') {
+        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+        audio.playSynth1()
+      } else if (leftHand==='synth2') {
+        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
+        audio.playSynth2()
+      } else if (leftHand==='params1') {
+        model.updateParamFromKey('synth1', pressed)
+      } else if (leftHand==='params2') {
+        model.updateParamFromKey('synth2', pressed)
       }
       break
+
+
     case 'right':
-      if (model.state.handed==='right') {
-        model.setRoot(constants.RH_pitch_keys[pressed])
-        audio.play()
-      } else {
-        model.updateParam(pressed)
+      if (pressed==='space' && spacebar==='left') { return }
+      console.log('right')
+
+      if (rightHand==='synth1') {
+        model.setBasePitch('synth1', constants.RH_pitch_keys[pressed])
+        audio.playSynth1()
+      } else if (rightHand==='synth2') {
+        model.setBasePitch('synth2', constants.RH_pitch_keys[pressed])
+        audio.playSynth2()
+      } else if (rightHand==='params1') {
+        model.updateParamFromKey('synth1', pressed)
+      } else if (rightHand==='params2') {
+        model.updateParamFromKey('synth2', pressed)
       }
       break
+
+
     case 'left-shifted':
-      if (model.state.handed==='left') {
-        model.setRoot(constants.LH_pitch_keys[pressed])
+      if (leftHand==='synth1') {
+        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+      } else if (leftHand==='synth2') {
+        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
       } else {
         // do something special?
-        model.updateParam(pressed)
       }
       break
+
+
     case 'right-shifted':
-      if (model.state.handed==='right') {
-        model.setRoot(constants.RH_pitch_keys[pressed])
+      if (rightHand==='synth1') {
+        model.setBasePitch('synth1', constants.RH_pitch_keys[pressed])
+      } else if (rightHand==='synth2') {
+        model.setBasePitch('synth2', constants.RH_pitch_keys[pressed])
       } else {
         // do something special?
-        model.updateParam(pressed)
       }
       break
+
+
   }
 }
 
@@ -65,3 +94,19 @@ const init = function() {
 }
 
 init()
+
+
+const generalDispatch = {
+
+  'ctrl-z': function() { model.swapHands() },
+  'ctrl-a': function() { model.setLeftHand('synth1') },
+  'ctrl-s': function() { model.setLeftHand('synth2') },
+  'ctrl-d': function() { model.setLeftHand('params1') },
+  'ctrl-f': function() { model.setLeftHand('params2') },
+
+  'ctrl-/': function() { model.swapHands() },
+  "ctrl-'": function() { model.setRightHand('synth1') },
+  'ctrl-;': function() { model.setRightHand('synth2') },
+  'ctrl-l': function() { model.setRightHand('params1') },
+  'ctrl-k': function() { model.setRightHand('params2') },
+}
