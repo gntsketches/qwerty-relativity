@@ -46,7 +46,7 @@ const model = (function() {
     if (state.spacebar==='left') { state.spacebar = 'right' }
     else if (state.spacebar==='right') { state.spacebar = 'left' }
 
-
+    console.log('spacebar', state.spacebar)
     // const lh = JSON.parse(state.leftHand)
     // const rh = JSON.parse(state.rightHand)
     const lh = state.leftHand, rh = state.rightHand
