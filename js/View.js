@@ -70,11 +70,11 @@ const view = (function() {
 
   };
   const updatePitches1View = function() {
-    console.log('changing pitch1 view...', model.state.synth1.pitch)
+    // console.log('changing pitch1 view...', model.state.synth1.pitch)
     $.each(pitch1DOM, function(i, v) {
-      console.log('v', v)
+      // console.log('v', v)
       $(v).html(model.state.synth1.pitch)
-      console.log('v.html', v.html)
+      // console.log('v.html', v.html)
     })
   }
 

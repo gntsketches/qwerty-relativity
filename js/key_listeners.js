@@ -533,7 +533,7 @@ const RH_keys = [
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": shiftedSingleKeyExcludedRight,
   },
   {
-    "keys": "shift ,",
+    "keys": "shift <",
     "on_keydown": function () { interpretKeypress('right-shifted', ',') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": shiftedSingleKeyExcludedRight,
   },
@@ -543,7 +543,7 @@ const RH_keys = [
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": shiftedSingleKeyExcludedRight,
   },
   {
-    "keys": "shift .",
+    "keys": "shift >",
     "on_keydown": function () { interpretKeypress('right-shifted', '.') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": shiftedSingleKeyExcludedRight,
   },

@@ -2,6 +2,7 @@
 // "Controller" ***************************************************************************
 
 const interpretKeypress = function(zone, pressed) {
+  // console.log('pressed', pressed)
   const spacebar = model.state.spacebar
   const leftHand = model.state.leftHand
   const rightHand = model.state.rightHand
