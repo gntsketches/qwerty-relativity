@@ -14,6 +14,10 @@ const model = (function() {
     paramsLinked: false,
 
     synth1: {
+      sustain: 'Hold',
+      holding: false,
+      traveling: true,
+      wave: 'Triangle',
       pitch: 'C3',
       editingParam: 'Portamento',
       params: {
@@ -22,6 +26,10 @@ const model = (function() {
       },
     },
     synth2: {
+      sustain: 'Pluck',
+      holding: false,
+      traveling: true,
+      wave: 'Sawtooth',
       pitch: 'C3',
       editingParam: 'Portamento',
       params: {
@@ -42,6 +50,17 @@ const model = (function() {
     view.initView() // for consistency should you pubSub?
   }
 
+  const toggleHolding = function(synthNum) {
+    if (synthNum === 'synth1') {
+      state.synth1.holding = !state.synth1.holding
+      pubSub.publish('synth1HoldingToggled')
+    }
+    else {
+      state.synth2.holding = !state.synth2.holding
+      pubSub.publish('synth2HoldingToggled')
+    }
+  }
+  
   const swapHands = function() {
     if (state.spacebar==='left') { state.spacebar = 'right' }
     else if (state.spacebar==='right') { state.spacebar = 'left' }
@@ -115,7 +134,8 @@ const model = (function() {
     setRightHand: setRightHand,
     swapHands: swapHands,
     setBasePitch: setBasePitch,
-    updateParamFromKey: updateParamFromKey
+    updateParamFromKey: updateParamFromKey,
+    toggleHolding: toggleHolding,
   }
 
 })()

@@ -1,11 +1,15 @@
 
 TODO DEV
+  sustain mode
+    pluck, press, hold
+      'holding' should be set to false when exiting Hold mode
+
   what's next?
+    naming of model.setLeft/RightHand - it's calling the View, not just setting
     improving the ctrl- shortcuts
     sharp/flat display
     refactor main / Model / Audio?
     add root note mode
-    add sustain mode
     add keydown/keyup mode
 
   DEV QUESTIONS

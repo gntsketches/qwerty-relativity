@@ -20,15 +20,51 @@ const interpretKeypress = function(zone, pressed) {
       console.log('left')
 
       if (leftHand==='synth1') {
-        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
-        audio.playSynth1()
+        if (model.state.synth1.sustain === 'Hold') {
+          model.toggleHolding('synth1')
+        } else {
+          model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+          audio.playSynth1()
+        }
       } else if (leftHand==='synth2') {
-        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
-        audio.playSynth2()
+        if (model.state.synth2.sustain === 'Hold') {
+          model.toggleHolding('synth2')
+        } else {
+          model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
+          audio.playSynth2()
+        }
       } else if (leftHand==='params1') {
         model.updateParamFromKey('synth1', pressed)
       } else if (leftHand==='params2') {
         model.updateParamFromKey('synth2', pressed)
+      }
+      break
+  
+    case 'left-up':
+      if (pressed==='space' && spacebar==='right') { return }
+      console.log('left-up')
+    
+      if (leftHand==='synth1') {
+        if (model.state.synth1.sustain === 'Pluck' ||
+            model.state.synth1.sustain === 'Hold') { return }
+        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+        audio.stopSynth1()
+      } else if (leftHand==='synth2') {
+        if (model.state.synth2.sustain === 'Pluck' ||
+          model.state.synth2.sustain === 'Hold') { return }
+        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
+        audio.stopSynth2()
+      }
+      break
+
+    
+    case 'left-shifted':
+      if (leftHand==='synth1') {
+        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+      } else if (leftHand==='synth2') {
+        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
+      } else {
+        // do something special?
       }
       break
 
@@ -47,17 +83,6 @@ const interpretKeypress = function(zone, pressed) {
         model.updateParamFromKey('synth1', pressed)
       } else if (rightHand==='params2') {
         model.updateParamFromKey('synth2', pressed)
-      }
-      break
-
-
-    case 'left-shifted':
-      if (leftHand==='synth1') {
-        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
-      } else if (leftHand==='synth2') {
-        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
-      } else {
-        // do something special?
       }
       break
 

@@ -6,6 +6,14 @@ body {
   grid-template-rows: 50vh 25vh 25vh;
 }
 
+#synth1-info {
+
+}
+
+#synth2info {
+
+}
+
 #left-hand {
   color: whitesmoke;
   grid-column-start: 2;

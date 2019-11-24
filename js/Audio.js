@@ -37,9 +37,36 @@ const audio = (function() {
 
   const playSynth1 = function() {
     console.log('play 1')
-    synth1.triggerAttackRelease(model.state.synth1.pitch, '8n')
+    if (model.state.synth1.sustain === 'Plucked') {
+      synth1.triggerAttackRelease(model.state.synth1.pitch, '8n')
+    } else {
+      synth1.triggerAttack(model.state.synth1.pitch, '8n')
+    }
+  }
+  
+  const stopSynth1 = function() {
+    console.log('play 1')
+    synth1.triggerRelease(model.state.synth1.pitch, '8n')
   }
 
+  const toggleSynth1Holding = function() {
+    if (model.state.synth1.holding === true) {
+      console.log(synth1.oscillator.state)
+      playSynth1()
+    } else {
+      console.log(synth1.oscillator.state)
+      stopSynth1()
+    }
+  }
+  
+  const toggleSynth2Holding = function() {
+    if (model.state.synth2.holding === true) {
+      playSynth2()
+    } else {
+      stopSynth2()
+    }
+  }
+  
   const setSynth1Portamento = function() {
     synth1.portamento = model.state.synth1.params.Portamento
   }
@@ -50,7 +77,16 @@ const audio = (function() {
 
   const playSynth2 = function() {
     console.log('play 2')
-    synth2.triggerAttackRelease(model.state.synth2.pitch, '8n')
+    if (model.state.synth2.sustain === 'Plucked') {
+      synth2.triggerAttackRelease(model.state.synth2.pitch, '8n')
+    } else {
+      synth2.triggerAttack(model.state.synth2.pitch, '8n')
+    }
+  }
+  
+  const stopSynth2 = function() {
+    console.log('play 1')
+    synth1.triggerRelease(model.state.synth1.pitch, '8n')
   }
 
   const setSynth2Portamento = function() {
@@ -87,10 +123,14 @@ const audio = (function() {
 
   pubSub.subscribe('params1Changed', updateSynth1Param)
   pubSub.subscribe('params2Changed', updateSynth2Param)
+  pubSub.subscribe('synth1HoldingToggled', toggleSynth1Holding)
+  pubSub.subscribe('synth2HoldingToggled', toggleSynth2Holding)
 
   return {
     playSynth1: playSynth1,
     playSynth2: playSynth2,
+    stopSynth1: stopSynth1,
+    stopSynth2: stopSynth2,
   }
 
 })()
