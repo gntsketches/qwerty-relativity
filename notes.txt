@@ -1,8 +1,8 @@
 
 TODO DEV
-  sustain mode
-    pluck, press, hold
+  sustain mode (pluck, press, hold)
       'holding' should be set to false when exiting Hold mode
+      nooo... you can actually just check oscillator state...
 
   what's next?
     naming of model.setLeft/RightHand - it's calling the View, not just setting
