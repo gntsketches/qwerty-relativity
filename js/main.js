@@ -21,17 +21,18 @@ const interpretKeypress = function(zone, pressed) {
 
       if (leftHand==='synth1') {
         if (model.state.synth1.sustain === 'Hold' &&
-           (pressed==='space' || pressed==='z')) {
+           ((pressed==='space' || pressed==='z') || model.state.synth1.holding===false)
+        ) {
           model.toggleHolding('synth1')
         } else {
-          model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+          model.setPitchAndPressed('synth1', pressed)
           audio.playSynth1()
         }
       } else if (leftHand==='synth2') {
         if (model.state.synth2.sustain === 'Hold') {
           model.toggleHolding('synth2')
         } else {
-          model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
+          model.setPitchAndPressed('synth2', pressed)
           audio.playSynth2()
         }
       } else if (leftHand==='params1') {
@@ -44,26 +45,24 @@ const interpretKeypress = function(zone, pressed) {
     case 'left-up':
       if (pressed==='space' && spacebar==='right') { return }
       console.log('left-up')
-
-      if (leftHand==='synth1') {
-        if (model.state.synth1.sustain === 'Press') {
-          model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+      if (leftHand==='synth1' &&
+          model.state.synth1.sustain==='Press' &&
+          model.state.synth1.pressed===pressed
+      ) {
           audio.stopSynth1()
-        }
       } else if (leftHand === 'synth2') {
-        if (model.state.synth2.sustain === 'Pluck' ||
-          model.state.synth2.sustain === 'Hold') { return }
-        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
-        audio.stopSynth2()
+        if (model.state.synth2.sustain==='Press') {
+          audio.stopSynth2()
+        }
       }
       break
 
 
     case 'left-shifted':
       if (leftHand==='synth1') {
-        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+        model.setPitchAndPressed('synth1', pressed)
       } else if (leftHand==='synth2') {
-        model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
+        model.setPitchAndPressed('synth2', pressed)
       } else {
         // do something special?
       }
@@ -75,10 +74,10 @@ const interpretKeypress = function(zone, pressed) {
       console.log('right')
 
       if (rightHand==='synth1') {
-        model.setBasePitch('synth1', constants.RH_pitch_keys[pressed])
+        model.setPitchAndPressed('synth1', pressed)
         audio.playSynth1()
       } else if (rightHand==='synth2') {
-        model.setBasePitch('synth2', constants.RH_pitch_keys[pressed])
+        model.setPitchAndPressed('synth2', pressed)
         audio.playSynth2()
       } else if (rightHand==='params1') {
         model.updateParamFromKey('synth1', pressed)
@@ -90,9 +89,9 @@ const interpretKeypress = function(zone, pressed) {
 
     case 'right-shifted':
       if (rightHand==='synth1') {
-        model.setBasePitch('synth1', constants.RH_pitch_keys[pressed])
+        model.setPitchAndPressed('synth1', pressed)
       } else if (rightHand==='synth2') {
-        model.setBasePitch('synth2', constants.RH_pitch_keys[pressed])
+        model.setPitchAndPressed('synth2', pressed)
       } else {
         // do something special?
       }

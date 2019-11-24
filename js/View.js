@@ -86,14 +86,14 @@ const view = (function() {
   }
 
   const initView = function() {
-    console.log('initializing view')
+    // console.log('initializing view')
     setLeftHandView()
     setRightHandView()
 
     pitch1DOM = $('.synth1-pitch')
     pitch2DOM = $('.synth2-pitch')
-    console.log('pitch1DOM', pitch1DOM)
-    console.log('pitch2DOM', pitch2DOM)
+    // console.log('pitch1DOM', pitch1DOM)
+    // console.log('pitch2DOM', pitch2DOM)
 
   }
 
@@ -111,6 +111,6 @@ const view = (function() {
 
 })()
 
-console.log('view', view)
+// console.log('view', view)
 
 

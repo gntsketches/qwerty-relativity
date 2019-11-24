@@ -3,6 +3,8 @@ TODO DEV
   sustain mode (pluck, press, hold)
       'holding' should be set to false when exiting Hold mode
       nooo... you can actually just check oscillator state...
+        was having some trouble with that, maybe removing 8n from triggerAttack will fix it too?
+        need to click z/space twice to stop it...
 
   what's next?
     naming of model.setLeft/RightHand - it's calling the View, not just setting

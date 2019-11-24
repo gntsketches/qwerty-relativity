@@ -39,8 +39,9 @@ const audio = (function() {
     if (model.state.synth1.sustain === 'Plucked') {
       synth1.triggerAttackRelease(model.state.synth1.pitch, '8n')
     } else {
-      console.log('triggerAttack')
-      synth1.triggerAttack(model.state.synth1.pitch, '8n')
+      console.log('triggerAttack', model.state.synth1.pitch)
+      console.log('tone state', Tone.context.state)
+      synth1.triggerAttack(model.state.synth1.pitch)
     }
   }
 

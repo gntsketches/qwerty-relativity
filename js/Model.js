@@ -1,5 +1,5 @@
 
-console.log('pubSub', pubSub)
+// console.log('pubSub', pubSub)
 
 // Model *************************************************************************
 
@@ -14,10 +14,11 @@ const model = (function() {
     paramsLinked: false,
 
     synth1: {
-      sustain: 'Press',
+      sustain: 'Hold',
       holding: false,
       traveling: true,
       wave: 'Triangle',
+      pressed: null,
       pitch: 'C3',
       editingParam: 'Portamento',
       params: {
@@ -30,6 +31,7 @@ const model = (function() {
       holding: false,
       traveling: true,
       wave: 'Sawtooth',
+      pressed: null,
       pitch: 'C3',
       editingParam: 'Portamento',
       params: {
@@ -53,6 +55,7 @@ const model = (function() {
   const toggleHolding = function(synthNum) {
     if (synthNum === 'synth1') {
       state.synth1.holding = !state.synth1.holding
+      console.log('holding?', state.synth1.holding)
       pubSub.publish('synth1HoldingToggled')
     }
     else {
@@ -78,10 +81,12 @@ const model = (function() {
     pubSub.publish('swapHands')
   }
 
-  const setBasePitch = function(synthNum, interval) {
+  const setPitchAndPressed = function(synthNum, pressed) {
+    const interval = constants.LH_pitch_keys[pressed]
     let noteIndex = constants.fullRange.indexOf(state[synthNum].pitch)
     noteIndex = noteIndex + constants.intervalConversions[interval]
     if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
+      state[synthNum].pressed = pressed
       state[synthNum].pitch = constants.fullRange[noteIndex]
     }
     if (synthNum === 'synth1') {
@@ -133,7 +138,7 @@ const model = (function() {
     setLeftHand: setLeftHand,
     setRightHand: setRightHand,
     swapHands: swapHands,
-    setBasePitch: setBasePitch,
+    setPitchAndPressed: setPitchAndPressed,
     updateParamFromKey: updateParamFromKey,
     toggleHolding: toggleHolding,
   }
