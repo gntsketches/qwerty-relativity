@@ -43,14 +43,14 @@ const audio = (function() {
       synth1.triggerAttack(model.state.synth1.pitch, '8n')
     }
   }
-  
+
   const stopSynth1 = function() {
     console.log('stop 1')
     // synth1.triggerRelease(model.state.synth1.pitch, '8n')
     synth1.triggerRelease()
   }
 
-  const toggleSynth1Holding = function() {
+  const changeSynth1Holding = function() {
     console.log('toggling synth1')
     if (model.state.synth1.holding === true) {
       playSynth1()
@@ -60,15 +60,15 @@ const audio = (function() {
       console.log('osc state stopped', synth1.oscillator.state)
     }
   }
-  
-  const toggleSynth2Holding = function() {
+
+  const changeSynth2Holding = function() {
     if (model.state.synth2.holding === true) {
       playSynth2()
     } else {
       stopSynth2()
     }
   }
-  
+
   const setSynth1Portamento = function() {
     synth1.portamento = model.state.synth1.params.Portamento
   }
@@ -85,7 +85,7 @@ const audio = (function() {
       synth2.triggerAttack(model.state.synth2.pitch, '8n')
     }
   }
-  
+
   const stopSynth2 = function() {
     console.log('play 1')
     synth1.triggerRelease(model.state.synth1.pitch, '8n')
@@ -125,8 +125,8 @@ const audio = (function() {
 
   pubSub.subscribe('params1Changed', updateSynth1Param)
   pubSub.subscribe('params2Changed', updateSynth2Param)
-  pubSub.subscribe('synth1HoldingToggled', toggleSynth1Holding)
-  pubSub.subscribe('synth2HoldingToggled', toggleSynth2Holding)
+  pubSub.subscribe('synth1HoldingToggled', changeSynth1Holding)
+  pubSub.subscribe('synth2HoldingToggled', changeSynth2Holding)
 
   return {
     playSynth1: playSynth1,

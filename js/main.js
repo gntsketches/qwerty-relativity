@@ -40,17 +40,17 @@ const interpretKeypress = function(zone, pressed) {
         model.updateParamFromKey('synth2', pressed)
       }
       break
-  
+
     case 'left-up':
       if (pressed==='space' && spacebar==='right') { return }
       console.log('left-up')
-    
+
       if (leftHand==='synth1') {
-        if (model.state.synth1.sustain === 'Pluck' ||
-            model.state.synth1.sustain === 'Hold') { return }
-        model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
-        audio.stopSynth1()
-      } else if (leftHand==='synth2') {
+        if (model.state.synth1.sustain === 'Press') {
+          model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])
+          audio.stopSynth1()
+        }
+      } else if (leftHand === 'synth2') {
         if (model.state.synth2.sustain === 'Pluck' ||
           model.state.synth2.sustain === 'Hold') { return }
         model.setBasePitch('synth2', constants.LH_pitch_keys[pressed])
@@ -58,7 +58,7 @@ const interpretKeypress = function(zone, pressed) {
       }
       break
 
-    
+
     case 'left-shifted':
       if (leftHand==='synth1') {
         model.setBasePitch('synth1', constants.LH_pitch_keys[pressed])

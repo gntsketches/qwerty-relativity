@@ -14,7 +14,7 @@ const model = (function() {
     paramsLinked: false,
 
     synth1: {
-      sustain: 'Hold',
+      sustain: 'Press',
       holding: false,
       traveling: true,
       wave: 'Triangle',
@@ -60,7 +60,7 @@ const model = (function() {
       pubSub.publish('synth2HoldingToggled')
     }
   }
-  
+
   const swapHands = function() {
     if (state.spacebar==='left') { state.spacebar = 'right' }
     else if (state.spacebar==='right') { state.spacebar = 'left' }
