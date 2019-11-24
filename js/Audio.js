@@ -52,13 +52,10 @@ const audio = (function() {
   }
 
   const changeSynth1Holding = function() {
-    console.log('toggling synth1')
     if (model.state.synth1.holding === true) {
       playSynth1()
-      console.log('osc state started', synth1.oscillator.state)
     } else {
       stopSynth1()
-      console.log('osc state stopped', synth1.oscillator.state)
     }
   }
 

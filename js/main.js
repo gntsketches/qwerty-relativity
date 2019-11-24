@@ -20,10 +20,16 @@ const interpretKeypress = function(zone, pressed) {
       console.log('left')
 
       if (leftHand==='synth1') {
-        if (model.state.synth1.sustain === 'Hold' &&
-           ((pressed==='space' || pressed==='z') || model.state.synth1.holding===false)
-        ) {
-          model.toggleHolding('synth1')
+        if (model.state.synth1.sustain === 'Hold') {
+           if (pressed==='space' || pressed==='z') {
+             model.toggleHolding('synth1')
+           } else if (model.state.synth1.holding===false) {
+             model.setPitchAndPressed('synth1', pressed)
+             model.toggleHolding('synth1')
+           } else {
+             model.setPitchAndPressed('synth1', pressed)
+             audio.playSynth1()
+           }
         } else {
           model.setPitchAndPressed('synth1', pressed)
           audio.playSynth1()
