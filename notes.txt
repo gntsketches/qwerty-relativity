@@ -1,10 +1,13 @@
 
 TODO DEV
   sustain mode (pluck, press, hold)
+      bug: both in Press, swap, rh synth1 lh synth2, when I swapped synths synth2 didn't play
+        again trouble after double swap in slightly different
       'holding' should be set to false when exiting Hold mode
-      nooo... you can actually just check oscillator state...
-        was having some trouble with that, maybe removing 8n from triggerAttack will fix it too?
-        need to click z/space twice to stop it...
+      also when switching synth (or set false on old synth and start other)
+      it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
+      could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
+      refactor left/right-up into one function
 
   what's next?
     naming of model.setLeft/RightHand - it's calling the View, not just setting

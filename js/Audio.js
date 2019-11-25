@@ -36,18 +36,17 @@ const audio = (function() {
   gain2.toMaster()
 
   const playSynth1 = function() {
-    if (model.state.synth1.sustain === 'Plucked') {
+    if (model.state.synth1.sustain === 'Pluck') {
       synth1.triggerAttackRelease(model.state.synth1.pitch, '8n')
     } else {
       console.log('triggerAttack', model.state.synth1.pitch)
-      console.log('tone state', Tone.context.state)
       synth1.triggerAttack(model.state.synth1.pitch)
     }
   }
 
   const stopSynth1 = function() {
     console.log('stop 1')
-    // synth1.triggerRelease(model.state.synth1.pitch, '8n')
+    // synth1.triggerRelease(model.state.synth1.pitch, '8n')  // doesn't work (in mono synth) if you pass it a pitch...
     synth1.triggerRelease()
   }
 
@@ -77,7 +76,7 @@ const audio = (function() {
 
   const playSynth2 = function() {
     console.log('play 2')
-    if (model.state.synth2.sustain === 'Plucked') {
+    if (model.state.synth2.sustain === 'Pluck') {
       synth2.triggerAttackRelease(model.state.synth2.pitch, '8n')
     } else {
       synth2.triggerAttack(model.state.synth2.pitch, '8n')
@@ -85,8 +84,8 @@ const audio = (function() {
   }
 
   const stopSynth2 = function() {
-    console.log('play 1')
-    synth1.triggerRelease(model.state.synth1.pitch, '8n')
+    console.log('stop 2')
+    synth2.triggerRelease()
   }
 
   const setSynth2Portamento = function() {

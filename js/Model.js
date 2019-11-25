@@ -14,9 +14,9 @@ const model = (function() {
     paramsLinked: false,
 
     synth1: {
-      sustain: 'Hold',
+      sustain: 'Pluck',
       holding: false,
-      traveling: true,
+      // traveling: true,
       wave: 'Triangle',
       pressed: null,
       pitch: 'C3',
@@ -29,7 +29,7 @@ const model = (function() {
     synth2: {
       sustain: 'Pluck',
       holding: false,
-      traveling: true,
+      // traveling: true,
       wave: 'Sawtooth',
       pressed: null,
       pitch: 'C3',
@@ -59,6 +59,7 @@ const model = (function() {
       pubSub.publish('synth1HoldingToggled')
     }
     else {
+    console.log(synthNum, 'Toggling')
       state.synth2.holding = !state.synth2.holding
       pubSub.publish('synth2HoldingToggled')
     }
@@ -81,8 +82,11 @@ const model = (function() {
     pubSub.publish('swapHands')
   }
 
-  const setPitchAndPressed = function(synthNum, pressed) {
-    const interval = constants.LH_pitch_keys[pressed]
+  const setPitchAndPressed = function(hand, synthNum, pressed) {
+    console.log('in setPitchAndPressed', synthNum, pressed)
+    let interval
+    if (hand==='left') { interval = constants.LH_pitch_keys[pressed] }
+    else if (hand==='right') { interval = constants.RH_pitch_keys[pressed] }
     let noteIndex = constants.fullRange.indexOf(state[synthNum].pitch)
     noteIndex = noteIndex + constants.intervalConversions[interval]
     if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
