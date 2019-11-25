@@ -3,6 +3,7 @@ TODO DEV
   sustain mode (pluck, press, hold)
       bug: both in Press, swap, rh synth1 lh synth2, when I swapped synths synth2 didn't play
         again trouble after double swap in slightly different
+        ... I *think* that was just the 8n bug again... it was in synth2 triggerAttack...
       'holding' should be set to false when exiting Hold mode
       also when switching synth (or set false on old synth and start other)
       it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main

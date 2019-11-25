@@ -14,7 +14,7 @@ const model = (function() {
     paramsLinked: false,
 
     synth1: {
-      sustain: 'Pluck',
+      sustain: 'Hold',
       holding: false,
       // traveling: true,
       wave: 'Triangle',
@@ -27,7 +27,7 @@ const model = (function() {
       },
     },
     synth2: {
-      sustain: 'Pluck',
+      sustain: 'Hold',
       holding: false,
       // traveling: true,
       wave: 'Sawtooth',

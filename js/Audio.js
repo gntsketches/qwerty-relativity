@@ -79,7 +79,7 @@ const audio = (function() {
     if (model.state.synth2.sustain === 'Pluck') {
       synth2.triggerAttackRelease(model.state.synth2.pitch, '8n')
     } else {
-      synth2.triggerAttack(model.state.synth2.pitch, '8n')
+      synth2.triggerAttack(model.state.synth2.pitch)
     }
   }
 
