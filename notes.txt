@@ -22,9 +22,13 @@ TODO DEV
     managing lots of conditional logic here...
     referencing things eg: model.state[synth] where synth is received from argument
       synth1, param1, multiple usages confusing. eg: uses in the view
-    OR state[synthNum].params[state[synthNum].editingParam] = value
-    OR } else if ( (state.synth1.editingParam==='Portamento' && pressed in constants.portamento_keys) ||
-      somehow seems fishy
+      OR state[synthNum].params[state[synthNum].editingParam] = value
+      OR } else if ( (state.synth1.editingParam==='Portamento' && pressed in constants.portamento_keys) ||
+        somehow seems fishy
+      *OR* perfect example, Model.changeSustainMode receives 'leftHand' or 'rightHand',
+        which is used directly to refer to state.leftHand / rightHand
+        which seems fine here, but in a big app it seems like...
+        can you keep everything that well organized so that you know what's going where?
     general naming strategies/conventions
     ? https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html
     ? https://medium.com/edge-coders/coding-tip-try-to-code-without-if-statements-d06799eed231

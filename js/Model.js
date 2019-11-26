@@ -14,7 +14,7 @@ const model = (function() {
     paramsLinked: false,
 
     synth1: {
-      sustain: 'Hold',
+      sustain: 'Pluck',
       holding: false,
       // traveling: true,
       wave: 'Triangle',
@@ -27,7 +27,7 @@ const model = (function() {
       },
     },
     synth2: {
-      sustain: 'Hold',
+      sustain: 'Pluck',
       holding: false,
       // traveling: true,
       wave: 'Sawtooth',
@@ -41,13 +41,31 @@ const model = (function() {
     },
   }
 
-  const setLeftHand = function (setting) {
+
+  const changeSustainMode = function(hand) {
+    const getNextSustainMode = function(currentSustainMode) {
+      if (currentSustainMode==='Pluck') { return 'Press' }
+      if (currentSustainMode==='Press') { return 'Hold' }
+      if (currentSustainMode==='Hold') { return 'Pluck' }
+    }
+
+    if (state[hand]==='synth1' || state[hand]==='params1') {
+      state.synth1.sustain = getNextSustainMode(state.synth1.sustain)
+      pubSub.publish('synth1SustainChanged')
+    } else {
+      state.synth2.sustain = getNextSustainMode(state.synth2.sustain)
+      pubSub.publish('synth2SustainChanged')
+    }
+
+  }
+
+  const setLeftHand = function(setting) {
     state.leftHand = setting
     console.log('left', state.leftHand)
     view.initView() // for consistency should you pubSub?
   }
 
-  const setRightHand = function (setting) {
+  const setRightHand = function(setting) {
     state.rightHand = setting
     view.initView() // for consistency should you pubSub?
   }
@@ -139,6 +157,7 @@ const model = (function() {
 
   return {
     state: state,
+    changeSustainMode: changeSustainMode,
     setLeftHand: setLeftHand,
     setRightHand: setRightHand,
     swapHands: swapHands,

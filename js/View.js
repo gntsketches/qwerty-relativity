@@ -2,10 +2,20 @@
 // View ****************************************************************************
 
 const view = (function() {
+  const synth1SustainDOM = $('#synth1-sustain')
+  const synth2SustainDOM = $('#synth2-sustain')
   const leftHandDOM = $('#left-hand')
   const rightHandDOM = $('#right-hand')
   let pitch1DOM = null
   let pitch2DOM = null
+
+  const setSynth1Sustain = function() {
+    synth1SustainDOM.html("Sustain: " + model.state.synth1.sustain)
+  }
+
+  const setSynth2Sustain = function() {
+    synth2SustainDOM.html("Sustain: " + model.state.synth2.sustain)
+  }
 
   const buildPitchView = function(synth) {
     const pitch = model.state[synth].pitch
@@ -87,6 +97,8 @@ const view = (function() {
 
   const initView = function() {
     // console.log('initializing view')
+    setSynth1Sustain()
+    setSynth2Sustain()
     setLeftHandView()
     setRightHandView()
 
@@ -98,6 +110,8 @@ const view = (function() {
   }
 
   pubSub.subscribe('swapHands', initView)
+  pubSub.subscribe('synth1SustainChanged', setSynth1Sustain)
+  pubSub.subscribe('synth2SustainChanged', setSynth2Sustain)
   pubSub.subscribe('basePitch1Changed', updatePitches1View)
   pubSub.subscribe('basePitch2Changed', updatePitches2View)
   // build subscribers for each param change, as with pitches

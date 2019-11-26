@@ -10,6 +10,16 @@ const shiftedSingleKeyExcludedRight = "control p ;"
 
 const general_combos = [
   {
+    "keys": "`",
+    "on_keydown": function () { interpretKeypress('general', '`') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "backspace",
+    "on_keydown": function () { interpretKeypress('general', 'back') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
     "keys": "control z",
     "on_keydown": function () { interpretKeypress('general', 'ctrl-z') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,

@@ -106,6 +106,9 @@ const interpretKeypress = function(zone, pressed) {
 
 const generalDispatch = {
 
+  '`'     : function() { model.changeSustainMode('leftHand') },
+  'back'  : function() { model.changeSustainMode('rightHand') },
+
   'ctrl-z': function() { model.swapHands() },
   'ctrl-a': function() { model.setLeftHand('synth1') },
   'ctrl-s': function() { model.setLeftHand('synth2') },

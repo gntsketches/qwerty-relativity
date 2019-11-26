@@ -1,25 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #222222;
   display: grid;
-  grid-template-columns: 10vw 30vw 30vw 10vw;
+  grid-template-columns: 9vw 30vw 30vw 9vw;
+  grid-template-rows: 6vh 15vh 15vh 4vh 40vh 5vh;
   grid-column-gap: 6.5vw;
-  grid-template-rows: 50vh 25vh 25vh;
+  grid-row-gap: 2vh;
+  padding: 2vh 1vw;
 }
 
 #synth1-info {
-
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  border: 2px solid #779944;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
 
-#synth2info {
-
+#synth2-info {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  border: 2px solid #7744aa;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
+
+.synth-title {
+  margin-left: 5px;
+}
+
+.synth-sustain {
+  margin-left: 20px;
+}
+
+/* HAND DISPLAYS *************************************************/
 
 #left-hand {
   color: whitesmoke;
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
   text-align: center;
 }
 
@@ -27,8 +59,8 @@ body {
   color: whitesmoke;
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
   text-align: center;
 }
 
