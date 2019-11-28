@@ -100,6 +100,14 @@ const model = (function() {
     pubSub.publish('swapHands')
   }
 
+  const toggleSpaceBar = function() {
+    if (state.spacebar==='left') { state.spacebar = 'right' }
+    else if (state.spacebar==='right') { state.spacebar = 'left' }
+
+    console.log('spacebar', state.spacebar)
+    pubSub.publish('spacebarToggled')
+  }
+
   const setPitchAndPressed = function(hand, synthNum, pressed) {
     console.log('in setPitchAndPressed', synthNum, pressed)
     let interval
@@ -161,6 +169,7 @@ const model = (function() {
     setLeftHand: setLeftHand,
     setRightHand: setRightHand,
     swapHands: swapHands,
+    toggleSpaceBar: toggleSpaceBar,
     setPitchAndPressed: setPitchAndPressed,
     updateParamFromKey: updateParamFromKey,
     toggleHolding: toggleHolding,

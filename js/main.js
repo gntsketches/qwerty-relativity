@@ -120,6 +120,8 @@ const generalDispatch = {
   'ctrl-;': function() { model.setRightHand('synth2') },
   'ctrl-l': function() { model.setRightHand('params1') },
   'ctrl-k': function() { model.setRightHand('params2') },
+
+  'ctrl-space': function() { model.toggleSpaceBar() },
 }
 
 

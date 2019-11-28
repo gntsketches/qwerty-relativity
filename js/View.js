@@ -6,16 +6,12 @@ const view = (function() {
   const synth2SustainDOM = $('#synth2-sustain')
   const leftHandDOM = $('#left-hand')
   const rightHandDOM = $('#right-hand')
+  const leftSpacebarDOM = $('#spacebar-left')
+  const rightSpacebarDOM = $('#spacebar-right')
+
   let pitch1DOM = null
   let pitch2DOM = null
 
-  const setSynth1Sustain = function() {
-    synth1SustainDOM.html("Sustain: " + model.state.synth1.sustain)
-  }
-
-  const setSynth2Sustain = function() {
-    synth2SustainDOM.html("Sustain: " + model.state.synth2.sustain)
-  }
 
   const buildPitchView = function(synth) {
     const pitch = model.state[synth].pitch
@@ -95,17 +91,41 @@ const view = (function() {
     })
   }
 
+  const setSpaceBarView = function() {
+    console.log('setting spacebar view')
+    const spaceHand = model.state.spacebar === 'left' ? leftSpacebarDOM : rightSpacebarDOM
+    const nonSpaceHand = model.state.spacebar === 'left' ? rightSpacebarDOM : leftSpacebarDOM
+    spaceHand.css("opacity", "1");
+    nonSpaceHand.css("opacity", "0.1");
+  };
+
+  // SYNTH INFO ************************************************************
+
+  const setSynth1Sustain = function() {
+    synth1SustainDOM.html("Sustain: " + model.state.synth1.sustain)
+  }
+
+  const setSynth2Sustain = function() {
+    synth2SustainDOM.html("Sustain: " + model.state.synth2.sustain)
+  }
+
+
+  // INIT ******************************************************************
+
   const initView = function() {
     // console.log('initializing view')
-    setSynth1Sustain()
-    setSynth2Sustain()
+
     setLeftHandView()
     setRightHandView()
-
     pitch1DOM = $('.synth1-pitch')
-    pitch2DOM = $('.synth2-pitch')
     // console.log('pitch1DOM', pitch1DOM)
+    pitch2DOM = $('.synth2-pitch')
     // console.log('pitch2DOM', pitch2DOM)
+    setSpaceBarView()
+
+    setSynth1Sustain()
+    setSynth2Sustain()
+
 
   }
 
@@ -117,6 +137,7 @@ const view = (function() {
   // build subscribers for each param change, as with pitches
   pubSub.subscribe('params1Changed', initView)
   pubSub.subscribe('params2Changed', initView)
+  pubSub.subscribe('spacebarToggled', setSpaceBarView)
 
 
   return {

@@ -71,6 +71,15 @@ const general_combos = [
     "on_keydown": function () { interpretKeypress('general', 'ctrl-k') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
   },
+
+
+  {
+    "keys": "control space",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-space') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+
+
 ]
 
 

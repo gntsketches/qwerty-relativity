@@ -1,22 +1,20 @@
 
 TODO DEV
+  Minor Features
+    sharp/flat display
+    adjust shortcuts for toggle synth/params
+    adjust params shortcuts to be consistently 'left to right'
+    add wave option for params
+
+  Major Features
+    non-traveling mode
+
   sustain mode (pluck, press, hold)
-      bug: both in Press, swap, rh synth1 lh synth2, when I swapped synths synth2 didn't play
-        again trouble after double swap in slightly different
-        ... I *think* that was just the 8n bug again... it was in synth2 triggerAttack...
       'holding' should be set to false when exiting Hold mode
       also when switching synth (or set false on old synth and start other)
       it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
       could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
       refactor left/right-up into one function
-
-  what's next?
-    naming of model.setLeft/RightHand - it's calling the View, not just setting
-    improving the ctrl- shortcuts
-    sharp/flat display
-    refactor main / Model / Audio?
-    add root note mode
-    add keydown/keyup mode
 
   DEV QUESTIONS
     managing lots of conditional logic here...
@@ -29,6 +27,7 @@ TODO DEV
         which is used directly to refer to state.leftHand / rightHand
         which seems fine here, but in a big app it seems like...
         can you keep everything that well organized so that you know what's going where?
+    naming of model.setLeft/RightHand - it's calling the View, not just setting
     general naming strategies/conventions
     ? https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html
     ? https://medium.com/edge-coders/coding-tip-try-to-code-without-if-statements-d06799eed231
