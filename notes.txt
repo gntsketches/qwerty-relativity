@@ -2,16 +2,21 @@
 TODO DEV
   Minor Features
     sharp/flat display
-    adjust shortcuts for toggle synth/params
-    adjust params shortcuts to be consistently 'left to right'
+    add params to synth info
     add wave option for params
 
+
   Major Features
+    press for params
+      press mode for params - apply vibrato & bend on press & remove on release
+        params: glide, vibrato, volume, delay, attack, (decay), (sustain), release
     non-traveling mode
 
+  UI Features
+    Tuning
+
   sustain mode (pluck, press, hold)
-      'holding' should be set to false when exiting Hold mode
-      also when switching synth (or set false on old synth and start other)
+      set to false when switching synth (or set false on old synth and start other)
       it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
       could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
       refactor left/right-up into one function
@@ -31,6 +36,9 @@ TODO DEV
     general naming strategies/conventions
     ? https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html
     ? https://medium.com/edge-coders/coding-tip-try-to-code-without-if-statements-d06799eed231
+
+  FORK
+    Keypress shifted keys: thinks shift-, is shift-<, likewise with period (.)
 
   KeyDown vs Up...
     so just add an on_keyup to listeners with a zone for that

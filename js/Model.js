@@ -59,16 +59,21 @@ const model = (function() {
 
   }
 
-  const setLeftHand = function(setting) {
-    state.leftHand = setting
-    console.log('left', state.leftHand)
+  const setHand = function(hand, setting) {
+    state[hand] = setting
+    console.log(hand, state[hand])
     view.initView() // for consistency should you pubSub?
   }
 
-  const setRightHand = function(setting) {
-    state.rightHand = setting
-    view.initView() // for consistency should you pubSub?
-  }
+  const toggleSynth = function(hand) {
+    if (state[hand]==='synth1') { setHand(hand, 'synth2')
+    } else { setHand(hand, 'synth1') }
+  };
+
+  const toggleParams = function(hand) {
+    if (state[hand]==='params1') { setHand(hand, 'params2')
+    } else { setHand(hand, 'params1') }
+  };
 
   const toggleHolding = function(synthNum) {
     if (synthNum === 'synth1') {
@@ -77,7 +82,6 @@ const model = (function() {
       pubSub.publish('synth1HoldingToggled')
     }
     else {
-    console.log(synthNum, 'Toggling')
       state.synth2.holding = !state.synth2.holding
       pubSub.publish('synth2HoldingToggled')
     }
@@ -166,8 +170,8 @@ const model = (function() {
   return {
     state: state,
     changeSustainMode: changeSustainMode,
-    setLeftHand: setLeftHand,
-    setRightHand: setRightHand,
+    toggleSynth: toggleSynth,
+    toggleParams: toggleParams,
     swapHands: swapHands,
     toggleSpaceBar: toggleSpaceBar,
     setPitchAndPressed: setPitchAndPressed,

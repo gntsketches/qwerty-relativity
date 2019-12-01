@@ -110,16 +110,12 @@ const generalDispatch = {
   'back'  : function() { model.changeSustainMode('rightHand') },
 
   'ctrl-z': function() { model.swapHands() },
-  'ctrl-a': function() { model.setLeftHand('synth1') },
-  'ctrl-s': function() { model.setLeftHand('synth2') },
-  'ctrl-d': function() { model.setLeftHand('params1') },
-  'ctrl-f': function() { model.setLeftHand('params2') },
+  'ctrl-a': function() { model.toggleSynth('leftHand') },
+  'ctrl-s': function() { model.toggleParams('leftHand') },
 
   'ctrl-/': function() { model.swapHands() },
-  "ctrl-'": function() { model.setRightHand('synth1') },
-  'ctrl-;': function() { model.setRightHand('synth2') },
-  'ctrl-l': function() { model.setRightHand('params1') },
-  'ctrl-k': function() { model.setRightHand('params2') },
+  "ctrl-'": function() { model.toggleSynth('rightHand') },
+  'ctrl-;': function() { model.toggleParams('rightHand') },
 
   'ctrl-space': function() { model.toggleSpaceBar() },
 }
