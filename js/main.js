@@ -124,7 +124,7 @@ const generalDispatch = {
 function synthPressedResponse(hand, synthNum, pressed) {
 
   if (model.state[synthNum].sustain === 'Hold') {
-        if (pressed==='space' || pressed==='z' || pressed==='/') {
+        if (constants.LH_pitch_keys[pressed]==='cur' || constants.RH_pitch_keys[pressed]==='cur') {
           model.toggleHolding(synthNum)
     } else if (model.state[synthNum].holding===false) {
       model.setPitchAndPressed(hand, synthNum, pressed)
