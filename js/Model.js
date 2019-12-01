@@ -60,8 +60,10 @@ const model = (function() {
   }
 
   const setHand = function(hand, setting) {
+    console.log(hand, state[hand])
     state[hand] = setting
     console.log(hand, state[hand])
+    
     view.initView() // for consistency should you pubSub?
   }
 

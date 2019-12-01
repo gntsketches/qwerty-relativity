@@ -2,12 +2,16 @@
 // View ****************************************************************************
 
 const view = (function() {
-  const synth1SustainDOM = $('#synth1-sustain')
-  const synth2SustainDOM = $('#synth2-sustain')
   const leftHandDOM = $('#left-hand')
   const rightHandDOM = $('#right-hand')
   const leftSpacebarDOM = $('#spacebar-left')
   const rightSpacebarDOM = $('#spacebar-right')
+  const synth1SustainDOM = $('#synth1-sustain')
+  const synth2SustainDOM = $('#synth2-sustain')
+  const synth1VibratoDOM = $('#synth1-vibrato')
+  const synth2VibratoDOM = $('#synth2-vibrato')
+  const synth1GlideDOM = $('#synth1-glide')
+  const synth2GlideDOM = $('#synth2-glide')
 
   let pitch1DOM = null
   let pitch2DOM = null
@@ -101,13 +105,12 @@ const view = (function() {
 
   // SYNTH INFO ************************************************************
 
-  const setSynth1Sustain = function() {
-    synth1SustainDOM.html("Sustain: " + model.state.synth1.sustain)
-  }
-
-  const setSynth2Sustain = function() {
-    synth2SustainDOM.html("Sustain: " + model.state.synth2.sustain)
-  }
+  const setSynth1Sustain = function() { synth1SustainDOM.html("Sustain: " + model.state.synth1.sustain) }
+  const setSynth2Sustain = function() { synth2SustainDOM.html("Sustain: " + model.state.synth2.sustain) }
+  const setSynth1Vibrato = function() { synth1VibratoDOM.html("Vibrato: " + model.state.synth1.params.Vibrato) }
+  const setSynth2Vibrato = function() { synth2VibratoDOM.html("Vibrato: " + model.state.synth2.params.Vibrato) }
+  const setSynth1Glide = function() { synth1GlideDOM.html("Glide: " + model.state.synth1.params.Portamento) }
+  const setSynth2Glide = function() { synth2GlideDOM.html("Glide: " + model.state.synth2.params.Portamento) }
 
 
   // INIT ******************************************************************
@@ -125,7 +128,10 @@ const view = (function() {
 
     setSynth1Sustain()
     setSynth2Sustain()
-
+    setSynth1Vibrato()
+    setSynth2Vibrato()
+    setSynth1Glide()
+    setSynth2Glide()
 
   }
 

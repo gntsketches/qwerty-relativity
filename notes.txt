@@ -1,27 +1,33 @@
 
 TODO DEV
-  Minor Features
-    sharp/flat display...?
-    add params to synth info
-    add wave option for params
-
 
   Major Features
     press for params
       press mode for params - apply vibrato & bend on press & remove on release
-        params: glide, vibrato, volume, delay, attack, (decay), (sustain), release
+        params: glide, vibrato, volume, delay(time and repeat), attack, (decay), (sustain), release
     non-traveling mode
 
-  UI Features
-    Tuning
+  REFACTOR
+    left/right-up into one function?
+      how with params press affect this?
 
-  sustain mode (pluck, press, hold)
-      set to false when switching synth (or set false on old synth and start other)
-      it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
-      could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
-      refactor left/right-up into one function
+  HMMM...
+    sharp/flat display...?
+
+  TODO DEV Other
+    +/- and 1/2 raise/lower volume for a synth!
+    Tuning (needs UI)
+    shift-space resets base to C3 (later can be adjustable)
+    add wave option for params
+    in Hold mode, set holding to false when switching synth (or set false on old synth and start other)
 
   DEV QUESTIONS
+    render efficiency
+      'piece by piece' approach (updatePitches1View) vs rerendering in whole chunks ('initView')
+        latter approach is easier but where does performance become an issue?
+        how to best organize/manage in areas where there are a lot of targeted rendering calls
+        or maybe just use Vue, dude.
+
     managing lots of conditional logic here...
     referencing things eg: model.state[synth] where synth is received from argument
       synth1, param1, multiple usages confusing. eg: uses in the view
@@ -36,6 +42,9 @@ TODO DEV
     general naming strategies/conventions
     ? https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html
     ? https://medium.com/edge-coders/coding-tip-try-to-code-without-if-statements-d06799eed231
+    sustain mode (pluck, press, hold)
+      it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
+      could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
 
   FORK
     Keypress shifted keys: thinks shift-, is shift-<, likewise with period (.)
@@ -48,16 +57,7 @@ TODO DEV
     is it a problem to call .stop in interpretKeypress? (to triggerRelease on a triggerAttackReleased synth?)
       if so you can either send .stop conditionally or just block it in Audio
 
-TODO DEV Other
-  +/- and 1/2 raise/lower volume for a synth!
-  shift-space resets base to C3 (later can be adjustable)
-  ctrl-space switches spacebar
 
-TODO DEV MOAR
-  z vs ctrl-z problem... does keypress.js accommodate this? build my own library for this perhaps...
-    https://codepen.io/gntsketches/pen/qBBVOLM?editors=1010
-    "is_solitary" - may be slowing things down because you can't trigger a key if another is still held.
-    let's fork keypress! & add an 'excludes' option
 
 TWO SYNTHS:
   with interpretKeypress it seems we could make a more general case
