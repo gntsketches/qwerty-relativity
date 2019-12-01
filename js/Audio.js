@@ -23,7 +23,7 @@ const audio = (function() {
     {
       "oscillator" : { "type" : "sawtooth" },
       "envelope" : constants.envelope,
-      "volume": -13,
+      "volume": -10,
     }
   )
 

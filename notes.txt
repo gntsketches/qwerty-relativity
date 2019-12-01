@@ -1,7 +1,7 @@
 
 TODO DEV
   Minor Features
-    sharp/flat display
+    sharp/flat display...?
     add params to synth info
     add wave option for params
 
