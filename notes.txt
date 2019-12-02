@@ -1,11 +1,25 @@
 
 TODO DEV
-
-  Major Features
     press for params
       press mode for params - apply vibrato & bend on press & remove on release
-        params: glide, vibrato, volume, delay(time and repeat), attack, (decay), (sustain), release
+        params (10):
+          volume, glide
+          vibrato depth, vibrato rate
+          delay time, delay repeat
+          attack, release
+          2 more...?
+      OK:
+        choose param with: zxcvb & asdfg
+        apply value with: qwert & 23456
+        SET the value with SHIFT & zxcvb asdfg
+
+
+  Major Features
     non-traveling mode
+    persist
+      for which you'll need a good refactor
+
+
 
   REFACTOR
     left/right-up into one function?
