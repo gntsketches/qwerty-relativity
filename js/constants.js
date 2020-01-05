@@ -90,7 +90,7 @@ const constants = {
   //   'n': '+8v', 'm': '+P5', ',': '-P5', '.': '-8v',
   // },
 
-  envelope : { "attack": 0.01, "decay": 0.1, "sustain": 0.7, "release": 3 },
+  envelope : { "attack": 0.005, "decay": 0.01, "sustain": 0.5, "release": 3 },
 
   param_select_keys : {
     'v': 'Portamento',

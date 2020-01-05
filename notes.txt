@@ -1,4 +1,5 @@
 
+
 TODO DEV
     press for params
       press mode for params - apply vibrato & bend on press & remove on release
@@ -32,6 +33,7 @@ TODO DEV
     +/- and 1/2 raise/lower volume for a synth!
     Tuning (needs UI)
     shift-space resets base to C3 (later can be adjustable)
+    ctrl-z (or something) to go back to last note you played
     add wave option for params
     in Hold mode, set holding to false when switching synth (or set false on old synth and start other)
 

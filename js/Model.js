@@ -7,9 +7,9 @@ const model = (function() {
 
   const state = {
 
-    leftHand: 'synth1',
-    rightHand: 'params1',
-    spacebar: 'left',
+    leftHand: 'params1',
+    rightHand: 'synth1',
+    spacebar: 'right',
     synthsLinked: false,
     paramsLinked: false,
 
@@ -63,7 +63,7 @@ const model = (function() {
     console.log(hand, state[hand])
     state[hand] = setting
     console.log(hand, state[hand])
-    
+
     view.initView() // for consistency should you pubSub?
   }
 
@@ -90,10 +90,6 @@ const model = (function() {
   }
 
   const swapHands = function() {
-    if (state.spacebar==='left') { state.spacebar = 'right' }
-    else if (state.spacebar==='right') { state.spacebar = 'left' }
-
-    console.log('spacebar', state.spacebar)
     // const lh = JSON.parse(state.leftHand)
     // const rh = JSON.parse(state.rightHand)
     const lh = state.leftHand, rh = state.rightHand

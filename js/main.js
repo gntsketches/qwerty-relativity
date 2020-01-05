@@ -57,8 +57,8 @@ const interpretKeypress = function(zone, pressed) {
 
 
     case 'right':
-      if (pressed==='space' && spacebar==='left') { return }
       console.log('right')
+      if (pressed==='space' && spacebar==='left') { return }
 
 
       if (rightHand==='synth1' || rightHand==='synth2') {
@@ -88,6 +88,7 @@ const interpretKeypress = function(zone, pressed) {
       break
 
     case 'right-shifted':
+      console.log('right-shifted')
       if (rightHand==='synth1') {
         model.setPitchAndPressed('right', 'synth1', pressed)
       } else if (rightHand==='synth2') {

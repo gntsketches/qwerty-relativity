@@ -51,6 +51,7 @@ const audio = (function() {
   }
 
   const changeSynth1Holding = function() {
+    console.log('changeSynth1Holding')
     if (model.state.synth1.holding === true) {
       playSynth1()
     } else {
