@@ -1,4 +1,4 @@
-
+note that some shift-combos don't work due to ghosting
 
 TODO DEV
     press for params
