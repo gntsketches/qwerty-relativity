@@ -17,7 +17,7 @@ const model = (function() {
       sustain: 'Pluck',
       holding: false,
       // traveling: true,
-      wave: 'Triangle',
+      wave: 'triangle',
       pressed: null,
       pitch: 'C3',
       editingParam: 'Portamento',
@@ -30,7 +30,7 @@ const model = (function() {
       sustain: 'Pluck',
       holding: false,
       // traveling: true,
-      wave: 'Sawtooth',
+      wave: 'sawtooth',
       pressed: null,
       pitch: 'C3',
       editingParam: 'Portamento',
@@ -98,7 +98,7 @@ const model = (function() {
     state.rightHand = lh
     console.log('leftHand', state.leftHand)
     console.log('rightHand', state.rightHand)
-
+    this.toggleSpaceBar()
     pubSub.publish('swapHands')
   }
 
@@ -110,11 +110,30 @@ const model = (function() {
     pubSub.publish('spacebarToggled')
   }
 
+  const changeSynthWave = function(synthNum) {
+    console.log('changing wave')
+    let wave = state[synthNum].wave;
+    switch (wave) {
+      case 'sine': wave = 'triangle'; break;
+      case 'triangle': wave = 'sawtooth'; break;
+      case 'sawtooth': wave = 'square'; break;
+      case 'square': wave = 'sine'; break;
+    }
+    state[synthNum].wave = wave
+    if (synthNum === 'synth1') {
+      pubSub.publish('synth1WaveChanged')
+    } else {
+      pubSub.publish('synth2WaveChanged')
+    }
+  }
+
+
   const setPitchAndPressed = function(hand, synthNum, pressed) {
     console.log('in setPitchAndPressed', synthNum, pressed)
     let interval
     if (hand==='left') { interval = constants.LH_pitch_keys[pressed] }
     else if (hand==='right') { interval = constants.RH_pitch_keys[pressed] }
+    // console.log('interval', interval)
     let noteIndex = constants.fullRange.indexOf(state[synthNum].pitch)
     noteIndex = noteIndex + constants.intervalConversions[interval]
     if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
@@ -172,6 +191,7 @@ const model = (function() {
     toggleParams: toggleParams,
     swapHands: swapHands,
     toggleSpaceBar: toggleSpaceBar,
+    changeSynthWave: changeSynthWave,
     setPitchAndPressed: setPitchAndPressed,
     updateParamFromKey: updateParamFromKey,
     toggleHolding: toggleHolding,

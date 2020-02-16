@@ -111,6 +111,8 @@ const generalDispatch = {
   'back'  : function() { model.changeSustainMode('rightHand') },
 
   'ctrl-z': function() { model.swapHands() },
+  'ctrl-x': function() { model.changeSynthWave('synth1') },
+  'ctrl-c': function() { model.changeSynthWave('synth2') },
   'ctrl-a': function() { model.toggleSynth('leftHand') },
   'ctrl-s': function() { model.toggleParams('leftHand') },
 

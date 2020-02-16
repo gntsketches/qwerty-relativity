@@ -12,6 +12,8 @@ const view = (function() {
   const synth2VibratoDOM = $('#synth2-vibrato')
   const synth1GlideDOM = $('#synth1-glide')
   const synth2GlideDOM = $('#synth2-glide')
+  const synth1WaveDOM = $('#synth1-wave')
+  const synth2WaveDOM = $('#synth2-wave')
 
   let pitch1DOM = null
   let pitch2DOM = null
@@ -111,6 +113,8 @@ const view = (function() {
   const setSynth2Vibrato = function() { synth2VibratoDOM.html("Vibrato: " + model.state.synth2.params.Vibrato) }
   const setSynth1Glide = function() { synth1GlideDOM.html("Glide: " + model.state.synth1.params.Portamento) }
   const setSynth2Glide = function() { synth2GlideDOM.html("Glide: " + model.state.synth2.params.Portamento) }
+  const setSynth1Wave = function() { synth1WaveDOM.html("Wave: " + ucFirst(model.state.synth1.wave)) }
+  const setSynth2Wave = function() { synth2WaveDOM.html("Wave: " + ucFirst(model.state.synth2.wave)) }
 
 
   // INIT ******************************************************************
@@ -132,6 +136,8 @@ const view = (function() {
     setSynth2Vibrato()
     setSynth1Glide()
     setSynth2Glide()
+    setSynth1Wave()
+    setSynth2Wave()
 
   }
 
@@ -140,6 +146,8 @@ const view = (function() {
   pubSub.subscribe('synth2SustainChanged', setSynth2Sustain)
   pubSub.subscribe('basePitch1Changed', updatePitches1View)
   pubSub.subscribe('basePitch2Changed', updatePitches2View)
+  pubSub.subscribe('synth1WaveChanged', setSynth1Wave)
+  pubSub.subscribe('synth2WaveChanged', setSynth2Wave)
   // build subscribers for each param change, as with pitches
   pubSub.subscribe('params1Changed', initView)
   pubSub.subscribe('params2Changed', initView)

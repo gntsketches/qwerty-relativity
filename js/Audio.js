@@ -75,6 +75,10 @@ const audio = (function() {
     vibrato1.frequency.value = model.state.synth1.params.Vibrato
   }
 
+  const setSynth1Wave = function() {
+    synth1.oscillator.type = model.state.synth1.wave
+  }
+
   const playSynth2 = function() {
     console.log('play 2')
     if (model.state.synth2.sustain === 'Pluck') {
@@ -95,6 +99,10 @@ const audio = (function() {
 
   const setSynth2VibratoFrequency = function() {
     vibrato2.frequency.value = model.state.synth2.params.Vibrato
+  }
+
+  const setSynth2Wave = function() {
+    synth2.oscillator.type = model.state.synth2.wave
   }
 
   const updateSynth1Param = function() {
@@ -125,6 +133,9 @@ const audio = (function() {
   pubSub.subscribe('params2Changed', updateSynth2Param)
   pubSub.subscribe('synth1HoldingToggled', changeSynth1Holding)
   pubSub.subscribe('synth2HoldingToggled', changeSynth2Holding)
+  pubSub.subscribe('synth1WaveChanged', setSynth1Wave)
+  pubSub.subscribe('synth2WaveChanged', setSynth2Wave)
+
 
   return {
     playSynth1: playSynth1,

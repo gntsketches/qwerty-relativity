@@ -1,6 +1,6 @@
 
-const singleKeyExcludedLeft = "shift ctrl tab t g"
-const singleKeyExcludedRight = "shift ctrl y h [ '"
+const singleKeyExcludedLeft = "shift ctrl tab t g 1 6"
+const singleKeyExcludedRight = "shift ctrl y h [ ' 7 ="
 const doubleKeyExcluded = "shift control"
 // const doubleKeyExcluded = "shift control"
 const shiftedSingleKeyExcludedLeft = "control tab t g"
@@ -25,6 +25,16 @@ const general_combos = [
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
   },
   {
+    "keys": "control x",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-x') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
+    "keys": "control c",
+    "on_keydown": function () { interpretKeypress('general', 'ctrl-c') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
+  },
+  {
     "keys": "control a",
     "on_keydown": function () { interpretKeypress('general', 'ctrl-a') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
@@ -34,16 +44,6 @@ const general_combos = [
     "on_keydown": function () { interpretKeypress('general', 'ctrl-s') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
   },
-  // {
-  //   "keys": "control f",
-  //   "on_keydown": function () { interpretKeypress('general', 'ctrl-f') },
-  //   "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
-  // },
-  // {
-  //   "keys": "control d",
-  //   "on_keydown": function () { interpretKeypress('general', 'ctrl-d') },
-  //   "prevent_default": true, "prevent_repeat": true, "is_exclusive": false,
-  // },
 
 
   {
@@ -97,12 +97,12 @@ const LH_keys = [
   //   "on_keyup": function () { interpretKeypress('left-up', 'tab') },
   //   "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
   // },
-  {
-    "keys": "1",
-    "on_keydown": function () { interpretKeypress('left', '1') },
-    "on_keyup": function () { interpretKeypress('left-up', '1') },
-    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
-  },
+  // {
+  //   "keys": "1",
+  //   "on_keydown": function () { interpretKeypress('left', '1') },
+  //   "on_keyup": function () { interpretKeypress('left-up', '1') },
+  //   "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
+  // },
   {
     "keys": "2",
     "on_keydown": function () { interpretKeypress('left', '2') },
@@ -127,12 +127,12 @@ const LH_keys = [
     "on_keyup": function () { interpretKeypress('left-up', '5') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
   },
-  {
-    "keys": "6",
-    "on_keydown": function () { interpretKeypress('left', '6') },
-    "on_keyup": function () { interpretKeypress('left-up', '6') },
-    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
-  },
+  // {
+  //   "keys": "6",
+  //   "on_keydown": function () { interpretKeypress('left', '6') },
+  //   "on_keyup": function () { interpretKeypress('left-up', '6') },
+  //   "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
+  // },
   {
     "keys": "q",
     "on_keydown": function () { interpretKeypress('left', 'q') },
@@ -225,6 +225,55 @@ const LH_keys = [
   },
 
   // DOUBLES
+  {
+    "keys": "1 2",
+    "on_keydown": function () { interpretKeypress('left', '12') },
+    "on_keyup": function () { interpretKeypress('left-up', '12') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "1 3",
+    "on_keydown": function () { interpretKeypress('left', '13') },
+    "on_keyup": function () { interpretKeypress('left-up', '13') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "1 4",
+    "on_keydown": function () { interpretKeypress('left', '14') },
+    "on_keyup": function () { interpretKeypress('left-up', '14') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "1 5",
+    "on_keydown": function () { interpretKeypress('left', '15') },
+    "on_keyup": function () { interpretKeypress('left-up', '15') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "6 2",
+    "on_keydown": function () { interpretKeypress('left', '62') },
+    "on_keyup": function () { interpretKeypress('left-up', '62') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "6 3",
+    "on_keydown": function () { interpretKeypress('left', '63') },
+    "on_keyup": function () { interpretKeypress('left-up', '63') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "6 4",
+    "on_keydown": function () { interpretKeypress('left', '64') },
+    "on_keyup": function () { interpretKeypress('left-up', '64') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "6 5",
+    "on_keydown": function () { interpretKeypress('left', '65') },
+    "on_keyup": function () { interpretKeypress('left-up', '65') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+
   {
     "keys": "tab q",
     "on_keydown": function () { interpretKeypress('left', 'tabq') },
@@ -508,13 +557,13 @@ const RH_keys = [
     "keys": "8",
     "on_keydown": function () { interpretKeypress('right', '8') },
     "on_keyup": function () { interpretKeypress('right-up', '8') },
-    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedRight,
   },
   {
     "keys": "9",
     "on_keydown": function () { interpretKeypress('right', '9') },
     "on_keyup": function () { interpretKeypress('right-up', '9') },
-    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedRight,
   },
   {
     "keys": "0",
@@ -620,6 +669,55 @@ const RH_keys = [
   // },
 
   // DOUBLES
+  {
+    "keys": "7 8",
+    "on_keydown": function () { interpretKeypress('right', '78') },
+    "on_keyup": function () { interpretKeypress('right-up', '78') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "7 9",
+    "on_keydown": function () { interpretKeypress('right', '79') },
+    "on_keyup": function () { interpretKeypress('right-up', '79') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "7 0",
+    "on_keydown": function () { interpretKeypress('right', '70') },
+    "on_keyup": function () { interpretKeypress('right-up', '70') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "7 -",
+    "on_keydown": function () { interpretKeypress('right', '7-') },
+    "on_keyup": function () { interpretKeypress('right-up', '7-') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "= 8",
+    "on_keydown": function () { interpretKeypress('right', '=8') },
+    "on_keyup": function () { interpretKeypress('right-up', '=8') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "= 9",
+    "on_keydown": function () { interpretKeypress('right', '=9') },
+    "on_keyup": function () { interpretKeypress('right-up', '=9') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "= 0",
+    "on_keydown": function () { interpretKeypress('right', '=0') },
+    "on_keyup": function () { interpretKeypress('right-up', '=0') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "= -",
+    "on_keydown": function () { interpretKeypress('right', '=-') },
+    "on_keyup": function () { interpretKeypress('right-up', '=-') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+
   {
     "keys": "y u",
     "on_keydown": function () { interpretKeypress('right', 'yu') },

@@ -1,5 +1,7 @@
 note that some shift-combos don't work due to ghosting
 
+weird thing: in press mode, go to lowest notes and octave-down, note will sustain indefinitely as if it were hold mode
+
 TODO DEV
     press for params
       press mode for params - apply vibrato & bend on press & remove on release
