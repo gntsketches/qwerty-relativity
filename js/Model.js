@@ -42,6 +42,26 @@ const model = (function() {
   }
 
 
+  // PLAY THE THING -------------------------------------------------------
+  const setPitchAndPressed = function(hand, synthNum, pressed) {
+    console.log('in setPitchAndPressed', synthNum, pressed)
+    let interval
+    if (hand==='left') { interval = constants.LH_pitch_keys[pressed] }
+    else if (hand==='right') { interval = constants.RH_pitch_keys[pressed] }
+    // console.log('interval', interval)
+    let noteIndex = constants.fullRange.indexOf(state[synthNum].pitch)
+    noteIndex = noteIndex + constants.intervalConversions[interval]
+    if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
+      state[synthNum].pressed = pressed
+      state[synthNum].pitch = constants.fullRange[noteIndex]
+    }
+    if (synthNum === 'synth1') {
+      pubSub.publish('basePitch1Changed', state[synthNum].pitch)
+    } else if (synthNum === 'synth2') {
+      pubSub.publish('basePitch2Changed', state[synthNum].pitch)
+    }
+  }
+
   const changeSustainMode = function(hand) {
     const getNextSustainMode = function(currentSustainMode) {
       if (currentSustainMode==='Pluck') { return 'Press' }
@@ -56,26 +76,7 @@ const model = (function() {
       state.synth2.sustain = getNextSustainMode(state.synth2.sustain)
       pubSub.publish('synth2SustainChanged')
     }
-
   }
-
-  const setHand = function(hand, setting) {
-    console.log(hand, state[hand])
-    state[hand] = setting
-    console.log(hand, state[hand])
-
-    view.initView() // for consistency should you pubSub?
-  }
-
-  const toggleSynth = function(hand) {
-    if (state[hand]==='synth1') { setHand(hand, 'synth2')
-    } else { setHand(hand, 'synth1') }
-  };
-
-  const toggleParams = function(hand) {
-    if (state[hand]==='params1') { setHand(hand, 'params2')
-    } else { setHand(hand, 'params1') }
-  };
 
   const toggleHolding = function(synthNum) {
     if (synthNum === 'synth1') {
@@ -88,6 +89,27 @@ const model = (function() {
       pubSub.publish('synth2HoldingToggled')
     }
   }
+
+
+  // DOES THE LEFT HAND KNOW WHAT THE RIGHT IS DOING? --------------------
+  const setHand = function(hand, setting) {
+    console.log(hand, state[hand])
+    state[hand] = setting
+    console.log(hand, state[hand])
+
+    view.initView() // for consistency should you pubSub?
+  }
+
+  const toggleSynth = function(hand) {
+  // "toggleSynthType" would be a better name
+    if (state[hand]==='synth1') { setHand(hand, 'synth2')
+    } else { setHand(hand, 'synth1') }
+  };
+
+  const toggleParams = function(hand) {
+    if (state[hand]==='params1') { setHand(hand, 'params2')
+    } else { setHand(hand, 'params1') }
+  };
 
   const swapHands = function() {
     // const lh = JSON.parse(state.leftHand)
@@ -110,40 +132,14 @@ const model = (function() {
     pubSub.publish('spacebarToggled')
   }
 
-  const changeSynthWave = function(synthNum) {
-    console.log('changing wave')
-    let wave = state[synthNum].wave;
-    switch (wave) {
-      case 'sine': wave = 'triangle'; break;
-      case 'triangle': wave = 'sawtooth'; break;
-      case 'sawtooth': wave = 'square'; break;
-      case 'square': wave = 'sine'; break;
-    }
-    state[synthNum].wave = wave
-    if (synthNum === 'synth1') {
-      pubSub.publish('synth1WaveChanged')
-    } else {
-      pubSub.publish('synth2WaveChanged')
-    }
-  }
 
-
-  const setPitchAndPressed = function(hand, synthNum, pressed) {
-    console.log('in setPitchAndPressed', synthNum, pressed)
-    let interval
-    if (hand==='left') { interval = constants.LH_pitch_keys[pressed] }
-    else if (hand==='right') { interval = constants.RH_pitch_keys[pressed] }
-    // console.log('interval', interval)
-    let noteIndex = constants.fullRange.indexOf(state[synthNum].pitch)
-    noteIndex = noteIndex + constants.intervalConversions[interval]
-    if (noteIndex > -1 && noteIndex <= constants.fullRange.length-1) {
-      state[synthNum].pressed = pressed
-      state[synthNum].pitch = constants.fullRange[noteIndex]
-    }
+  // PARAMS ---------------------------------------------------------------
+  const changeEditingParam = function(synthNum, param) {
+    state[synthNum].editingParam = param
     if (synthNum === 'synth1') {
-      pubSub.publish('basePitch1Changed', state[synthNum].pitch)
+      pubSub.publish('params1Changed')
     } else if (synthNum === 'synth2') {
-      pubSub.publish('basePitch2Changed', state[synthNum].pitch)
+      pubSub.publish('params2Changed')
     }
   }
 
@@ -164,15 +160,6 @@ const model = (function() {
     }
   }
 
-  const changeEditingParam = function(synthNum, param) {
-    state[synthNum].editingParam = param
-    if (synthNum === 'synth1') {
-      pubSub.publish('params1Changed')
-    } else if (synthNum === 'synth2') {
-      pubSub.publish('params2Changed')
-    }
-  }
-
   const setParam = function(synthNum, value) {
     // console.log(value)
     state[synthNum].params[state[synthNum].editingParam] = value
@@ -180,6 +167,23 @@ const model = (function() {
       pubSub.publish('params1Changed')
     } else if (synthNum === 'synth2') {
       pubSub.publish('params2Changed')
+    }
+  }
+
+  const changeSynthWave = function(synthNum) {
+    console.log('changing wave')
+    let wave = state[synthNum].wave;
+    switch (wave) {
+      case 'sine': wave = 'triangle'; break;
+      case 'triangle': wave = 'sawtooth'; break;
+      case 'sawtooth': wave = 'square'; break;
+      case 'square': wave = 'sine'; break;
+    }
+    state[synthNum].wave = wave
+    if (synthNum === 'synth1') {
+      pubSub.publish('synth1WaveChanged')
+    } else {
+      pubSub.publish('synth2WaveChanged')
     }
   }
 
@@ -198,3 +202,22 @@ const model = (function() {
   }
 
 })()
+
+
+// const updateParamFromKey = function(synthNum, pressed) {
+  console.log('pressed', pressed)
+  // if (pressed in constants.param_select_keys) {
+  //   const param = constants.param_select_keys[pressed]
+    console.log('param', param)
+    // changeEditingParam(synthNum, param)
+  // } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
+  //   if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
+  //     (synthNum==='synth2' && state.synth2.editingParam==='Portamento') ) {
+  //     setParam(synthNum, constants.portamento_keys[pressed])
+  //   } else if ( (synthNum==='synth1' && state.synth1.editingParam==='Vibrato') ||
+  //     (synthNum==='synth2' && state.synth2.editingParam==='Vibrato') ) {
+  //     setParam(synthNum, constants.vibrato_keys[pressed])
+  //   }
+  // }
+// }
+

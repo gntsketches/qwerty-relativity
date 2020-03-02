@@ -1,50 +1,13 @@
-note that some shift-combos don't work due to ghosting
-
-weird thing: in press mode, go to lowest notes and octave-down, note will sustain indefinitely as if it were hold mode
-
-TODO DEV
-    press for params
-      press mode for params - apply vibrato & bend on press & remove on release
-        params (10):
-          volume, glide
-          vibrato depth, vibrato rate
-          delay time, delay repeat
-          attack, release
-          2 more...?
-      OK:
-        choose param with: zxcvb & asdfg
-        apply value with: qwert & 23456
-        SET the value with SHIFT & zxcvb asdfg
-
-
-  Major Features
-    non-traveling mode
-    persist
-      for which you'll need a good refactor
 
 
 
-  REFACTOR
-    left/right-up into one function?
-      how with params press affect this?
 
-  HMMM...
-    sharp/flat display...?
-
-  TODO DEV Other
-    +/- and 1/2 raise/lower volume for a synth!
-    Tuning (needs UI)
-    shift-space resets base to C3 (later can be adjustable)
-    ctrl-z (or something) to go back to last note you played
-    add wave option for params
-    in Hold mode, set holding to false when switching synth (or set false on old synth and start other)
-
-  DEV QUESTIONS
+*** DEV QUESTIONS ********************************************************************
     render efficiency
       'piece by piece' approach (updatePitches1View) vs rerendering in whole chunks ('initView')
         latter approach is easier but where does performance become an issue?
         how to best organize/manage in areas where there are a lot of targeted rendering calls
-        or maybe just use Vue, dude.
+        or maybe just use Vue
 
     managing lots of conditional logic here...
     referencing things eg: model.state[synth] where synth is received from argument
@@ -60,119 +23,130 @@ TODO DEV
     general naming strategies/conventions
     ? https://www.refactoring.com/catalog/replaceConditionalWithPolymorphism.html
     ? https://medium.com/edge-coders/coding-tip-try-to-code-without-if-statements-d06799eed231
-    sustain mode (pluck, press, hold)
-      it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
-      could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
-
-  FORK
-    Keypress shifted keys: thinks shift-, is shift-<, likewise with period (.)
-
-  KeyDown vs Up...
-    so just add an on_keyup to listeners with a zone for that
-    probs won't change interpretKeypress much.
-    you'll need a .stop method on Audio
-    audio will do conditionally depending on mode
-    is it a problem to call .stop in interpretKeypress? (to triggerRelease on a triggerAttackReleased synth?)
-      if so you can either send .stop conditionally or just block it in Audio
 
 
 
-TWO SYNTHS:
-  with interpretKeypress it seems we could make a more general case
-    to accommodate more diverse options like two synths.
-    ie: left -> doWhatLeftHandDoes, right -> doWhatRightHandDoes
-  UI
+
+*** CTRL/SHIFT UI MAP *****************************************************************************
     (ctrl: q: start/stop recording)
     ctrl...  a: toggle lh synth, s: toggle lh params, d: toggle rh synth, f: toggle rh params
     ctrl... z: swap hands, x: lh s1 rh p1, c: lh s2 rh p2, v: lh p1 rh s1, b: lh p2 rh s2
     ctrl l: link/unlink synths,
     ctrl space: switch spacebar hand
 
-LINK SYNTHS/PARAMS
-    you should be able to play both synths (simultaneously) with just one hand!
-    So can you do both params with one hand?
-      trickier - not all params will work for both...
-      but maybe that's ok. like you can still edit a fmsynth param on a regular synth, it just doesn't do anything
-      but reading them, hmmm. then each hand needs two displays.
-      but it doesn't. each hand displays itself, and when synth/params are linked, the active hand controls the other as it's able.
-      JUST DO one 'thing' for each hand'
-      AND have a 'play both' or 'link synths' option so both are played (by either hand)
-
-TODO
-  - add synth options
-  - add gain options
-
-seems like there was some thought that the whole left/right hand listeners might be refactored...
-
-
-how to:
-  keyup & keydown
-    will need a "down" handler as usual
 
 
 
 
-expressive split qwerty
-!yes! - think ("vim-style") where a current pitch is moved around by interval, rather than playing a specific note :
-(Enter) option to trigger & hold note
-(Tab) toggles Mode where the base pitch stays fixed (on spacebar)
-off-hand controls
-can port a mento be adjusted while a note is held?
-https://noisehack.com/how-to-build-supersaw-synth-web-audio-api/
+*** PARKING LOT ***********************************************************************************
 
-
-
-
-
-mode shifting:
-  trigger modes:
-    triggerAttackRelease
-    triggerAttack/triggerRelease
-    note sustain - space to turn on/off
-  pitch selection:
-    moving root
-    fixed root (in note sustain mode: space returns to root note, any same pitch toggles on/off on second press)
-      do you want to have note sustain mode in fixed root mode at all...
-
-"shift" modifier - moves root pitch without triggering note (in any mode)
-
-
-sculpt hand hmm: param editing vs key-responsive sound manipulation?
-
-tab/enter/etc. to toggle 'boards'
-
-Board 1:
-  Port | Vibrato | Gain | Synthtype
-Board 2:
-  Attack | Decay | Sustain | Release
-
-PARAM TREE:
-  basic
-    gain portamento detune
-  synth type
-    saw sin tri etc...
-  envelope
-    adsr
-  effects
-    vibrato
-    filter
-    tremolo
-    chorus
-    phaser
-    delay
-      delay on/off delay time delay feed
-  presets
-    1 2 3 4 5
-
-pitch bend with .detune and linearRampToValueAtTime : https://github.com/Tonejs/Tone.js/wiki/Signals
-
-hmm:
-  may want a modifiable "reset" quick fix in case you get lost.
-    (eg: ctrl-x sets note to C3)
-
-
-parking lot:
+  Tuning (needs UI)
+  FIXED ROOT OPTION (in note sustain mode: space returns to root note, any same pitch toggles on/off on second press)
+    do you want to have note sustain mode in fixed root mode at all...
+  'Correction' features
+    ctrl-z (or something) to go back to last note you played
+    Modifiable "reset" quick fix in case you get lost.
+      (eg: shift-space sets note to C3)
   FEATURE make-your own presets
   polysynth - possible issue with which-note-is-released? or maybe not. I think triggerRelease accepts a note.
   FEATURE wherein base note of one hand (with fixed base) tracks to other hand,
     enabling ez-harmonies.
+  pitch bend with .detune and linearRampToValueAtTime : https://github.com/Tonejs/Tone.js/wiki/Signals
+  https://noisehack.com/how-to-build-supersaw-synth-web-audio-api/
+  persist
+
+  LINK SYNTHS/PARAMS
+      you should be able to play both synths (simultaneously) with just one hand!
+      So can you do both params with one hand?
+        trickier - not all params will work for both...
+        but maybe that's ok. like you can still edit a fmsynth param on a regular synth, it just doesn't do anything
+        but reading them, hmmm. then each hand needs two displays.
+        but it doesn't. each hand displays itself, and when synth/params are linked, the active hand controls the other as it's able.
+        JUST DO one 'thing' for each hand'
+        AND have a 'play both' or 'link synths' option so both are played (by either hand)
+
+
+*** PARAM FIGURING-OUT ***************************************************************
+
+  each row is a param, has four to increment/decrement by (say) 1 or 5 ('+lo', '+hi')
+    keys with the mod jump to fixed-value zone: 0, low, mid, high
+    so row keys are specified to the increment/zone name, not a specific value
+      & each param type has its own value specifications which are looked up secondarily
+  shift & a row key allows you to change that row's function
+      assign to a grid (16 options, 32 with mod keys)
+      basic grid:
+        gain    glide   vibrato   detune
+        attack  decay   sustain   release
+
+  TODO PARAMS
+    constants:
+      maps for increments, zones, specifications for each param, param grid
+    state:
+      manage param assignments for each row (on each hand)
+    model:
+      will just have to take a look
+    audio:
+      'set' options for each param - probably want a class wrapper for synths, since they both will have identical function
+    view:
+      'hand' view lists the chosen synths (probably don't need values)
+      'bar' view lists values (perhaps use inputs for choosing)
+
+
+    'advanced' params:
+      synth types - various am/fm/other synth mods...
+      filter (many params...)
+      chorus
+      delay
+        delay on/off delay time delay feed
+      tremolo?
+      phaser?
+
+    presets
+      1 2 3 4 5
+
+
+  ? can portamento be adjusted while a note is held?
+
+  Probably Not Like This:
+    (sculpt hand hmm: param editing vs key-responsive sound manipulation)
+    ie "press mode" for params - apply vibrato & bend on press & remove on release
+      params (10):
+        volume, glide
+        vibrato depth, vibrato rate
+        delay time, delay repeat
+        attack, release
+        2 more...?
+    eg:
+      choose param with: zxcvb & asdfg
+      apply value with: qwert & 23456
+      SET the value with SHIFT & zxcvb asdfg
+
+  Also Not Like This:
+    tab/enter/etc. to toggle 'boards'
+      Board 1:
+        Port | Vibrato | Gain | Synthtype
+      Board 2:
+        Attack | Decay | Sustain | Release
+
+
+*** KEYPRESS FORK ****************************************************************
+    Keypress shifted keys: thinks shift-, is shift-<, likewise with period (.)
+
+
+*** MISC HMM ********************************************************************
+
+  note that some shift-combos don't work due to ghosting
+
+  weird thing: in press mode, go to lowest notes and octave-down, note will sustain indefinitely as if it were hold mode
+
+  seems like there was some thought that the whole left/right hand listeners might be refactored...
+
+  is it a problem to call .stop in interpretKeypress? (to triggerRelease on a triggerAttackReleased synth?)
+    if so you can either send .stop conditionally or just block it in Audio
+
+  sustain mode (pluck, press, hold)
+    it's a little strange to publish 'synth1HoldingToggled' things when otherwise play() is called from main
+    could there be some problem with shift-keys calling setPitchAndPressed (ie: interference with 'pressed'?)
+
+
+  sharp/flat display...?

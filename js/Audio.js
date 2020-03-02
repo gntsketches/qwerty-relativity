@@ -3,6 +3,7 @@
 
 const audio = (function() {
 
+  // SYNTH 1 --------------------------------------------------------------
   const synth1 = new Tone.Synth(
     {
       "oscillator" : { "type" : "triangle" },
@@ -18,22 +19,6 @@ const audio = (function() {
   synth1.connect(vibrato1)
   vibrato1.connect(gain)
   gain.toMaster()
-
-  const synth2 = new Tone.Synth(
-    {
-      "oscillator" : { "type" : "sawtooth" },
-      "envelope" : constants.envelope,
-      "volume": -10,
-    }
-  )
-
-  const vibrato2 = new Tone.Vibrato()
-  vibrato2.frequency.value = model.state.synth2.params.Vibrato
-  const gain2 = new Tone.Gain()
-  gain2.gain.value = 0.5
-  synth2.connect(vibrato2)
-  vibrato2.connect(gain)
-  gain2.toMaster()
 
   const playSynth1 = function() {
     if (model.state.synth1.sustain === 'Pluck') {
@@ -59,11 +44,15 @@ const audio = (function() {
     }
   }
 
-  const changeSynth2Holding = function() {
-    if (model.state.synth2.holding === true) {
-      playSynth2()
-    } else {
-      stopSynth2()
+  const updateSynth1Param = function() {
+    console.log('updating current sound param', model.state)
+    switch (model.state.synth1.editingParam) {
+      case 'Portamento':
+        setSynth1Portamento()
+        break
+      case 'Vibrato':
+        setSynth1VibratoFrequency()
+        break
     }
   }
 
@@ -77,6 +66,32 @@ const audio = (function() {
 
   const setSynth1Wave = function() {
     synth1.oscillator.type = model.state.synth1.wave
+  }
+
+
+  // SYNTH 2 --------------------------------------------------------------
+  const synth2 = new Tone.Synth(
+    {
+      "oscillator" : { "type" : "sawtooth" },
+      "envelope" : constants.envelope,
+      "volume": -10,
+    }
+  )
+
+  const vibrato2 = new Tone.Vibrato()
+  vibrato2.frequency.value = model.state.synth2.params.Vibrato
+  const gain2 = new Tone.Gain()
+  gain2.gain.value = 0.5
+  synth2.connect(vibrato2)
+  vibrato2.connect(gain)
+  gain2.toMaster()
+
+  const changeSynth2Holding = function() {
+    if (model.state.synth2.holding === true) {
+      playSynth2()
+    } else {
+      stopSynth2()
+    }
   }
 
   const playSynth2 = function() {
@@ -93,30 +108,6 @@ const audio = (function() {
     synth2.triggerRelease()
   }
 
-  const setSynth2Portamento = function() {
-    synth2.portamento = model.state.synth2.params.Portamento
-  }
-
-  const setSynth2VibratoFrequency = function() {
-    vibrato2.frequency.value = model.state.synth2.params.Vibrato
-  }
-
-  const setSynth2Wave = function() {
-    synth2.oscillator.type = model.state.synth2.wave
-  }
-
-  const updateSynth1Param = function() {
-    // console.log('updating current sound param', model.state)
-    switch (model.state.synth1.editingParam) {
-      case 'Portamento':
-        setSynth1Portamento()
-        break
-      case 'Vibrato':
-        setSynth1VibratoFrequency()
-        break
-    }
-  }
-
   const updateSynth2Param = function() {
     console.log('updating current sound param')
     switch (model.state.synth2.editingParam) {
@@ -129,6 +120,20 @@ const audio = (function() {
     }
   }
 
+  const setSynth2Portamento = function() {
+    synth2.portamento = model.state.synth2.params.Portamento
+  }
+
+  const setSynth2VibratoFrequency = function() {
+    vibrato2.frequency.value = model.state.synth2.params.Vibrato
+  }
+
+  const setSynth2Wave = function() {
+    synth2.oscillator.type = model.state.synth2.wave
+  }
+
+
+  // SUBSCIPTIONS -----------------------------------------------------
   pubSub.subscribe('params1Changed', updateSynth1Param)
   pubSub.subscribe('params2Changed', updateSynth2Param)
   pubSub.subscribe('synth1HoldingToggled', changeSynth1Holding)
