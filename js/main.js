@@ -2,7 +2,7 @@
 // "Controller" ***************************************************************************
 
 const interpretKeypress = function(zone, pressed) {
-  // console.log('pressed', pressed)
+  console.log('pressed', pressed)
   const spacebar = model.state.spacebar
   const leftHand = model.state.leftHand
   const rightHand = model.state.rightHand
@@ -60,7 +60,6 @@ const interpretKeypress = function(zone, pressed) {
       console.log('right')
       if (pressed==='space' && spacebar==='left') { return }
 
-
       if (rightHand==='synth1' || rightHand==='synth2') {
         synthPressedResponse('right', rightHand, pressed)
 
@@ -108,7 +107,7 @@ const interpretKeypress = function(zone, pressed) {
 const generalDispatch = {
 
   '`'     : function() { model.changeSustainMode('leftHand') },
-  'back'  : function() { model.changeSustainMode('rightHand') },
+  '\\'  : function() { model.changeSustainMode('rightHand') },
 
   'ctrl-z': function() { model.swapHands() },
   'ctrl-x': function() { model.changeSynthWave('synth1') },

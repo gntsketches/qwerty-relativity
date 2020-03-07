@@ -35,7 +35,9 @@
     ctrl space: switch spacebar hand
 
 
-
+    >>> Honestly maybe just remove shifted doubles?
+      They are crap to play, any some are probably ghosting anyway,
+        plus you can just combine two other shift keys
 
 
 *** PARKING LOT ***********************************************************************************
