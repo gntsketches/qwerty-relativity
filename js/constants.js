@@ -148,57 +148,128 @@ const constants = {
 
   envelope : { "attack": 0.005, "decay": 0.01, "sustain": 0.5, "release": 3 },
 
-  param_select_keys : {
-    'c': 'Vibrato',
-    'v': 'Portamento',
 
-    'n': 'Portamento',
-    'm': 'Vibrato',
+  RH_param_keys : {
+    '9': '-hi', '0': '-lo', '-': '+lo', '=': '+hi',
+    'i': '-hi', 'o': '-lo', 'p': '+lo', '[': '+hi',
+    'k': '-hi', 'l': '-lo', ';': '+lo', "'": '+hi',
+
+    '89': 'val1',     '80': 'val2',     '8-': 'val3',       '8=': 'val4',
+    'back9':  'val1', 'back0':  'val2', 'back-': 'val3',    'back=': 'val4',
+    ']9': 'val1',     ']0': 'val2',     ']-': 'val3',       ']=': 'val4',
+    'ui': 'val1',     'uo': 'val2',     'up': 'val3',       'u[': 'val4',
+    ']i': 'val1',     ']o': 'val2',     ']p': 'val3',       '][': 'val4',
+    'jk': 'val1',     'jl': 'val2',     'j;': 'val3',       "j'": 'val4',
+    "enterk": 'val1', "enterl": 'val2', "enter;": 'val3',   "enter'": 'val4',
+
+    // 'n': '-8v', 'm': 'cur', ',': '-P5', '.': '+P5', '/': '+8v',
+    // 'space': 'cur',
   },
 
-  volume_keys: {
-    '2': 0.5,
-    '3': 1.28,
-    '4': 2.5,
-    '5': 5,
-    '6': 10,
-
-    '7': 1.28,
-    '8': 2.5,
-    '9': 5,
-    '0': 10,
-    '-': 1999,
+  RH_param_grid: {
+    'i': 'gain',  'o': 'glide', 'p': 'vibrato', '[': 'detune',
+    // 'k': 'attack','l': 'decay', ';': 'sustain', "'": 'release',
   },
 
-  portamento_keys : {
-    'q': 0.0,
-    'w': 0.2,
-    'e': 0.4,
-    'r': 0.8,
-    't': 1.6,
-
-    'y': 0,
-    'u': 0.2,
-    'i': 0.4,
-    'o': 0.8,
-    'p': 1.6,
+  glide_values: {
+    '-lo': -0.1,
+    '+lo': 0.1,
+    '-hi': -0.5,
+    '+hi': 0.5,
+    'val1': 0,
+    'val2': 0.4,
+    'val3': 1.6,
+    'val4': 5,
   },
 
-  vibrato_keys : {
-    'a': 0,
-    's': 0.5,
-    'd': 1,
-    'f': 2,
-    'g': 4,
-
-    'h': 0,
-    'j': 0.5,
-    'k': 1,
-    'l': 2,
-    ';': 4,
+  vibrato_values: {
+    '-lo': -1,
+    '+lo': 1,
+    '-hi': -5,
+    '+hi': 5,
+    'val1': 0,
+    'val2': 2,
+    'val3': 5,
+    'val4': 20,
   },
 
+  detune_values: {
+    '-lo': -1,
+    '+lo': 1,
+    '-hi': -10,
+    '+hi': 10,
+    'val1': -50,
+    'val2': 0,
+    'val3': 0,
+    'val4': 50,
+  },
+
+  volume_values: {
+    '-lo': -1,
+    '+lo': 1,
+    '-hi': -4,
+    '+hi': 4,
+    'val1': -20,
+    'val2': -15,
+    'val3': -10,
+    'val4': -5,
+  },
 }
+
+
+
+
+//   param_select_keys : {
+//     'c': 'Vibrato',
+//     'v': 'Portamento',
+//
+//     'n': 'Portamento',
+//     'm': 'Vibrato',
+//   },
+//
+//   volume_keys: {
+//     '2': 0.5,
+//     '3': 1.28,
+//     '4': 2.5,
+//     '5': 5,
+//     '6': 10,
+//
+//     '7': 1.28,
+//     '8': 2.5,
+//     '9': 5,
+//     '0': 10,
+//     '-': 1999,
+//   },
+//
+//   portamento_keys : {
+//     'q': 0.0,
+//     'w': 0.2,
+//     'e': 0.4,
+//     'r': 0.8,
+//     't': 1.6,
+//
+//     'y': 0,
+//     'u': 0.2,
+//     'i': 0.4,
+//     'o': 0.8,
+//     'p': 1.6,
+//   },
+//
+//   vibrato_keys : {
+//     'a': 0,
+//     's': 0.5,
+//     'd': 1,
+//     'f': 2,
+//     'g': 4,
+//
+//     'h': 0,
+//     'j': 0.5,
+//     'k': 1,
+//     'l': 2,
+//     ';': 4,
+//   },
+//
+// }
 
 
 // portamento_keys : {

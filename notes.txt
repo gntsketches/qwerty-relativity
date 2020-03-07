@@ -75,14 +75,20 @@
     so row keys are specified to the increment/zone name, not a specific value
       & each param type has its own value specifications which are looked up secondarily
   shift & a row key allows you to change that row's function
+      (or perhaps the bottom row rather than shift?
+        fewer rows but faster access to changing it... you can use thumb! (maybe spacebar works too)
+        plus, were you really going to be able to manage 4 params all at once anyway?
+        plus, you could have multiple options on that row)
       assign to a grid (16 options, 32 with mod keys)
       basic grid:
         gain    glide   vibrato   detune
         attack  decay   sustain   release
 
+
   TODO PARAMS
     constants:
       maps for increments, zones, specifications for each param, param grid
+        RH done
     state:
       manage param assignments for each row (on each hand)
     model:

@@ -20,7 +20,12 @@ const model = (function() {
       wave: 'triangle',
       pressed: null,
       pitch: 'C3',
-      editingParam: 'Portamento',
+      // editingParam: 'Portamento',
+      paramRows: {
+        'top': 'vibrato',
+        'mid': 'volume',
+        'low': 'glide',
+      },
       params: {
         Portamento: 0,
         Vibrato: 0
@@ -33,7 +38,12 @@ const model = (function() {
       wave: 'sawtooth',
       pressed: null,
       pitch: 'C3',
-      editingParam: 'Portamento',
+      // editingParam: 'Portamento',
+      paramRows: {
+        'top': 'vibrato',
+        'mid': 'volume',
+        'low': 'glide',
+      },
       params: {
         Portamento: 0,
         Vibrato: 0
