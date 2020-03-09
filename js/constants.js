@@ -149,7 +149,30 @@ const constants = {
   envelope : { "attack": 0.005, "decay": 0.01, "sustain": 0.5, "release": 3 },
 
 
-  RH_param_keys : {
+  params_rows: {  // can manage LH and RH
+    top: [
+      // '2': etc
+      '9', '0', '-', '=', '89', '80', '8-', '8=', 'back9', 'back0', 'back-', 'back=', ']9', ']0', ']-', ']='
+    ],
+    middle: [
+      'i', 'o', 'p', '[', 'ui', 'uo', 'up', 'u[', ']i', ']o', ']p', ']['
+    ],
+    bottom: [
+      'k', 'l', ';', "'", 'jk', 'jl', 'j;', "j'", "enterk", "enterl", "enter;", "enter'"
+    ],
+  },
+
+  param_grids: {  // also can manage LR and RH. since it's different keys.
+    // LEFT HAND
+    // '2': etc.
+
+    // RIGHT HAND
+    'i': 'volume',  'o': 'glide', 'p': 'vibrato', '[': 'detune',
+    // 'k': 'attack','l': 'decay', ';': 'sustain', "'": 'release',
+  },
+
+  param_keys : {  // can ALSO manage LR and RH. hey wow.
+    // RIGHT HAND
     '9': '-hi', '0': '-lo', '-': '+lo', '=': '+hi',
     'i': '-hi', 'o': '-lo', 'p': '+lo', '[': '+hi',
     'k': '-hi', 'l': '-lo', ';': '+lo', "'": '+hi',
@@ -166,166 +189,57 @@ const constants = {
     // 'space': 'cur',
   },
 
-  RH_param_grid: {
-    'i': 'gain',  'o': 'glide', 'p': 'vibrato', '[': 'detune',
-    // 'k': 'attack','l': 'decay', ';': 'sustain', "'": 'release',
+  param_values: {
+    vibrato: {
+      '-lo': -1,
+      '+lo': 1,
+      '-hi': -5,
+      '+hi': 5,
+      'val1': 0,
+      'val2': 2,
+      'val3': 5,
+      'val4': 20,
+    },
+    glide: {
+      '-lo': -0.1,
+      '+lo': 0.1,
+      '-hi': -0.5,
+      '+hi': 0.5,
+      'val1': 0,
+      'val2': 0.4,
+      'val3': 1.6,
+      'val4': 5,
+    },
+    volume: {
+      '-lo': -1,
+      '+lo': 1,
+      '-hi': -4,
+      '+hi': 4,
+      'val1': -15,
+      'val2': -10,
+      'val3': -5,
+      'val4': 0,
+    },
+    detune: {
+      '-lo': -1,
+      '+lo': 1,
+      '-hi': -10,
+      '+hi': 10,
+      'val1': -50,
+      'val2': 0,
+      'val3': 0,
+      'val4': 50,
+    },
   },
 
-  glide_values: {
-    '-lo': -0.1,
-    '+lo': 0.1,
-    '-hi': -0.5,
-    '+hi': 0.5,
-    'val1': 0,
-    'val2': 0.4,
-    'val3': 1.6,
-    'val4': 5,
+  param_minmax: {
+    volume: { min: -20, max: 10 },
+    vibrato: { min: 0, max: 100 },
+    detune: { min: -100, max: 100 },
+    glide: { min: -50, max: 50 }
   },
 
-  vibrato_values: {
-    '-lo': -1,
-    '+lo': 1,
-    '-hi': -5,
-    '+hi': 5,
-    'val1': 0,
-    'val2': 2,
-    'val3': 5,
-    'val4': 20,
-  },
-
-  detune_values: {
-    '-lo': -1,
-    '+lo': 1,
-    '-hi': -10,
-    '+hi': 10,
-    'val1': -50,
-    'val2': 0,
-    'val3': 0,
-    'val4': 50,
-  },
-
-  volume_values: {
-    '-lo': -1,
-    '+lo': 1,
-    '-hi': -4,
-    '+hi': 4,
-    'val1': -20,
-    'val2': -15,
-    'val3': -10,
-    'val4': -5,
-  },
 }
 
 
 
-
-//   param_select_keys : {
-//     'c': 'Vibrato',
-//     'v': 'Portamento',
-//
-//     'n': 'Portamento',
-//     'm': 'Vibrato',
-//   },
-//
-//   volume_keys: {
-//     '2': 0.5,
-//     '3': 1.28,
-//     '4': 2.5,
-//     '5': 5,
-//     '6': 10,
-//
-//     '7': 1.28,
-//     '8': 2.5,
-//     '9': 5,
-//     '0': 10,
-//     '-': 1999,
-//   },
-//
-//   portamento_keys : {
-//     'q': 0.0,
-//     'w': 0.2,
-//     'e': 0.4,
-//     'r': 0.8,
-//     't': 1.6,
-//
-//     'y': 0,
-//     'u': 0.2,
-//     'i': 0.4,
-//     'o': 0.8,
-//     'p': 1.6,
-//   },
-//
-//   vibrato_keys : {
-//     'a': 0,
-//     's': 0.5,
-//     'd': 1,
-//     'f': 2,
-//     'g': 4,
-//
-//     'h': 0,
-//     'j': 0.5,
-//     'k': 1,
-//     'l': 2,
-//     ';': 4,
-//   },
-//
-// }
-
-
-// portamento_keys : {
-//   's': 0,
-//     'h': 0,
-//     'd': 0.01,
-//     'f': 0.01,
-//     'j': 0.02,
-//     'k': 0.02,
-//     'g': 0.04,
-//     'l': 0.04,
-//
-//     'w': 0.08,
-//     'y': 0.08,
-//     'e': 0.16,
-//     'u': 0.16,
-//     'r': 0.32,
-//     'i': 0.32,
-//     't': 0.64,
-//     'o': 0.64,
-//
-//     '3': 1.28,
-//     '7': 1.28,
-//     '4': 2.5,
-//     '8': 2.5,
-//     '5': 5,
-//     '9': 5,
-//     '6': 10,
-//     '0': 10,
-// },
-//
-// vibrato_keys : {
-//   's': 0,
-//     'h': 0,
-//     'd': 1,
-//     'j': 1,
-//     'f': 2,
-//     'k': 2,
-//     'g': 3,
-//     'l': 3,
-//
-//     'w': 5,
-//     'y': 5,
-//     'e': 7,
-//     'u': 7,
-//     'r': 9,
-//     'i': 9,
-//     't': 11,
-//     'o': 11,
-//
-//     '3': 15,
-//     '7': 15,
-//     '4': 20,
-//     '8': 20,
-//     '5': 30,
-//     '9': 30,
-//     '6': 40,
-//     '0': 40,
-// },

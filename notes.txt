@@ -10,7 +10,9 @@
         or maybe just use Vue
 
     managing lots of conditional logic here...
-    referencing things eg: model.state[synth] where synth is received from argument
+      'if' statements expensive?
+    lots of 'correspondences' ...
+      ie: referencing things eg: model.state[synth] where synth is received from argument
       synth1, param1, multiple usages confusing. eg: uses in the view
       OR state[synthNum].params[state[synthNum].editingParam] = value
       OR } else if ( (state.synth1.editingParam==='Portamento' && pressed in constants.portamento_keys) ||
@@ -92,13 +94,17 @@
     state:
       manage param assignments for each row (on each hand)
     model:
-      will just have to take a look
+      minimum pram adjustment values
     audio:
-      'set' options for each param - probably want a class wrapper for synths, since they both will have identical function
+      'set' options for each param -
+        working on synth1 only...
+      probably want a class wrapper for synths, since they both will have identical function
+      volume adjustment crackles - how to set smoothly?
     view:
-      'hand' view lists the chosen synths (probably don't need values)
-      'bar' view lists values (perhaps use inputs for choosing)
-
+      'hand' view lists the chosen synths
+       when you got into param select mode,
+        render a box with the options
+       display volume at -10 = 0
 
     'advanced' params:
       synth types - various am/fm/other synth mods...
@@ -114,6 +120,7 @@
 
 
   ? can portamento be adjusted while a note is held?
+  ? 'bar' perhaps use inputs for choosing?
 
   Probably Not Like This:
     (sculpt hand hmm: param editing vs key-responsive sound manipulation)

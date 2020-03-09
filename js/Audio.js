@@ -8,10 +8,9 @@ const audio = (function() {
     {
       "oscillator" : { "type" : "triangle" },
       "envelope" : constants.envelope,
-      "volume": -3,
+      "volume": model.state.synth1.params.volume,
     }
   )
-
   const vibrato1 = new Tone.Vibrato()
   vibrato1.frequency.value = model.state.synth1.params.Vibrato
   const gain = new Tone.Gain()
@@ -44,26 +43,38 @@ const audio = (function() {
     }
   }
 
-  const updateSynth1Param = function() {
-    console.log('updating current sound param', model.state)
-    switch (model.state.synth1.editingParam) {
-      case 'Portamento':
+  const updateSynth1Param = function(param) {
+    console.log('updating param', param)
+    switch (param) {
+      case 'volume':
+        setSynth1Volume()
+        break
+      case 'glide':
         setSynth1Portamento()
         break
-      case 'Vibrato':
+      case 'detune':
+        setSynth1Detune()
+        break
+      case 'vibrato':
         setSynth1VibratoFrequency()
         break
+      default:
+        return
     }
   }
 
   const setSynth1Portamento = function() {
-    synth1.portamento = model.state.synth1.params.Portamento
+    synth1.portamento = model.state.synth1.params.glide
   }
-
   const setSynth1VibratoFrequency = function() {
-    vibrato1.frequency.value = model.state.synth1.params.Vibrato
+    vibrato1.frequency.value = model.state.synth1.params.vibrato
   }
-
+  const setSynth1Volume = function() {
+    synth1.volume.value = model.state.synth1.params.volume
+  }
+  const setSynth1Detune = function() {
+    synth1.detune.value = model.state.synth1.params.detune
+  }
   const setSynth1Wave = function() {
     synth1.oscillator.type = model.state.synth1.wave
   }
@@ -77,7 +88,6 @@ const audio = (function() {
       "volume": -10,
     }
   )
-
   const vibrato2 = new Tone.Vibrato()
   vibrato2.frequency.value = model.state.synth2.params.Vibrato
   const gain2 = new Tone.Gain()
@@ -108,8 +118,10 @@ const audio = (function() {
     synth2.triggerRelease()
   }
 
-  const updateSynth2Param = function() {
-    console.log('updating current sound param')
+  const updateSynth2Param = function(param) {
+    console.log('updating param', param)
+    return
+
     switch (model.state.synth2.editingParam) {
       case 'Portamento':
         setSynth2Portamento()

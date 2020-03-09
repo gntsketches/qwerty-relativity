@@ -43,7 +43,7 @@ body {
 
 .which-synth {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 
@@ -59,12 +59,22 @@ body {
 }
 
 .editing-param {
-  font-size: 2rem;
+  font-size: 1.5rem;
   /*line-height: 10rem;*/
 }
 
 .param-value {
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.param-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.param-grid-row {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .hand-meta-below-left {

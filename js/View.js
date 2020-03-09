@@ -8,10 +8,14 @@ const view = (function() {
   const rightSpacebarDOM = $('#spacebar-right')
   const synth1SustainDOM = $('#synth1-sustain')
   const synth2SustainDOM = $('#synth2-sustain')
-  const synth1VibratoDOM = $('#synth1-vibrato')
-  const synth2VibratoDOM = $('#synth2-vibrato')
+  const synth1VolumeDOM = $('#synth1-volume')
+  const synth2VolumeDOM = $('#synth2-volume')
   const synth1GlideDOM = $('#synth1-glide')
   const synth2GlideDOM = $('#synth2-glide')
+  const synth1VibratoDOM = $('#synth1-vibrato')
+  const synth2VibratoDOM = $('#synth2-vibrato')
+  const synth1DetuneDOM = $('#synth1-detune')
+  const synth2DetuneDOM = $('#synth2-detune')
   const synth1WaveDOM = $('#synth1-wave')
   const synth2WaveDOM = $('#synth2-wave')
 
@@ -19,28 +23,55 @@ const view = (function() {
   let pitch2DOM = null
 
 
-  const buildPitchView = function(synth) {
-    const pitch = model.state[synth].pitch
+  const buildPitchView = function(synthNum) {
+    const pitch = model.state[synthNum].pitch
 
     return $([
-      "<div class='" + synth + "-display'>",
-      "  <div class='which-synth'>" + synth + "</div>",
-      "  <div class='" + synth + "-pitch'>" + pitch + "</div>",
+      "<div class='" + synthNum + "-display'>",
+      "  <div class='which-synth'>" + synthNum + "</div>",
+      "  <div class='" + synthNum + "-pitch'>" + pitch + "</div>",
       "</div>"
     ].join("\n"));
   }
 
-  const buildParamsView = function(synth) {
-    const editingParam = model.state[synth].editingParam
-    const params = model.state[synth].params
-    const value =  params[editingParam]
+  const buildParamsView = function(synthNum) {
+    console.log('buildParamsView', synthNum)
+    const topParam = model.state[synthNum].paramRows.top
+    const topParamVal= model.state[synthNum].params[topParam]
+    const middleParam = model.state[synthNum].paramRows.middle
+    const middleParamVal= model.state[synthNum].params[middleParam]
+    const bottomParam = model.state[synthNum].paramRows.bottom
+    const bottomParamVal= model.state[synthNum].params[bottomParam]
+
+    if (model.state[synthNum].awaitingParamAssign !== false) {
+      console.log('awaitingParamAssign in view')
+      const editingRow = model.state[synthNum].awaitingParamAssign
+      return $([
+        "<div class='" + synthNum + "-display'>",
+        "  <div class='which-synth'>choose " + synthNum + " " + editingRow + " param:</div>",
+        "  <div class='param-grid'>",
+        "    <div class='param-grid-row'>",
+        "      <span>i Vol</span><span>o Glide</span><span>p Vib</span><span>[ Tune</span>",
+        "    </div>",
+        "  </div>",
+        "</div>"
+      ].join("\n"));
+    }
 
     return $([
-      "<div class='" + synth + "-display'>",
-      "  <div class='which-synth'>" + synth + "</div>",
+      "<div class='" + synthNum + "-display'>",
+      "  <div class='which-synth'>" + synthNum + "</div>",
       "  <div class='param-container'>",
-      "    <span class='editing-param'>" + editingParam + ": </span>",
-      "    <span class='param-value'>" + value + "</span>",
+      "    <span class='editing-param'>" + topParam + ": </span>",
+      "    <span class='param-value'>" + topParamVal + "</span>",
+      "  </div>",
+      "  <div class='param-container'>",
+      "    <span class='editing-param'>" + middleParam + ": </span>",
+      "    <span class='param-value'>" + middleParamVal + "</span>",
+      "  </div>",
+      "  <div class='param-container'>",
+      "    <span class='editing-param'>" + bottomParam + ": </span>",
+      "    <span class='param-value'>" + bottomParamVal + "</span>",
       "  </div>",
       "</div>"
     ].join("\n"));
@@ -109,10 +140,14 @@ const view = (function() {
 
   const setSynth1Sustain = function() { synth1SustainDOM.html("Sustain: " + model.state.synth1.sustain) }
   const setSynth2Sustain = function() { synth2SustainDOM.html("Sustain: " + model.state.synth2.sustain) }
-  const setSynth1Vibrato = function() { synth1VibratoDOM.html("Vibrato: " + model.state.synth1.params.Vibrato) }
-  const setSynth2Vibrato = function() { synth2VibratoDOM.html("Vibrato: " + model.state.synth2.params.Vibrato) }
-  const setSynth1Glide = function() { synth1GlideDOM.html("Glide: " + model.state.synth1.params.Portamento) }
-  const setSynth2Glide = function() { synth2GlideDOM.html("Glide: " + model.state.synth2.params.Portamento) }
+  const setSynth1Volume = function() { synth1VolumeDOM.html("Volume: " + model.state.synth1.params.volume) }
+  const setSynth2Volume = function() { synth2VolumeDOM.html("Volume: " + model.state.synth2.params.volume) }
+  const setSynth1Glide = function() { synth1GlideDOM.html("Glide: " + model.state.synth1.params.glide) }
+  const setSynth2Glide = function() { synth2GlideDOM.html("Glide: " + model.state.synth2.params.glide) }
+  const setSynth1Vibrato = function() { synth1VibratoDOM.html("Vibrato: " + model.state.synth1.params.vibrato) }
+  const setSynth2Vibrato = function() { synth2VibratoDOM.html("Vibrato: " + model.state.synth2.params.vibrato) }
+  const setSynth1Detune = function() { synth1DetuneDOM.html("Detune: " + model.state.synth1.params.detune) }
+  const setSynth2Detune = function() { synth2DetuneDOM.html("Detune: " + model.state.synth2.params.detune) }
   const setSynth1Wave = function() { synth1WaveDOM.html("Wave: " + ucFirst(model.state.synth1.wave)) }
   const setSynth2Wave = function() { synth2WaveDOM.html("Wave: " + ucFirst(model.state.synth2.wave)) }
 
@@ -132,10 +167,14 @@ const view = (function() {
 
     setSynth1Sustain()
     setSynth2Sustain()
+    setSynth1Volume()
+    setSynth2Volume()
     setSynth1Vibrato()
     setSynth2Vibrato()
     setSynth1Glide()
     setSynth2Glide()
+    setSynth1Detune()
+    setSynth2Detune()
     setSynth1Wave()
     setSynth2Wave()
 

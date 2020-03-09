@@ -92,11 +92,12 @@ const interpretKeypress = function(zone, pressed) {
         model.setPitchAndPressed('right', 'synth1', pressed)
       } else if (rightHand==='synth2') {
         model.setPitchAndPressed('right', 'synth2', pressed)
-      } else {
-        // do something special?
+      } else if (rightHand==='params1') {
+        model.updateParamFromKey('synth1', pressed, true)
+      } else if (rightHand==='params2') {
+        model.updateParamFromKey('synth2', pressed, true )
       }
       break
-
 
   }
 }

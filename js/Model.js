@@ -7,9 +7,9 @@ const model = (function() {
 
   const state = {
 
-    leftHand: 'params1',
-    rightHand: 'synth1',
-    spacebar: 'right',
+    leftHand: 'synth1',
+    rightHand: 'params1',
+    spacebar: 'left',
     synthsLinked: false,
     paramsLinked: false,
 
@@ -20,15 +20,17 @@ const model = (function() {
       wave: 'triangle',
       pressed: null,
       pitch: 'C3',
-      // editingParam: 'Portamento',
       paramRows: {
         'top': 'vibrato',
-        'mid': 'volume',
-        'low': 'glide',
+        'middle': 'volume',
+        'bottom': 'glide',
       },
+      awaitingParamAssign: false,
       params: {
-        Portamento: 0,
-        Vibrato: 0
+        vibrato: 0,
+        volume: -5,
+        glide: 0,
+        detune: 0,
       },
     },
     synth2: {
@@ -38,15 +40,16 @@ const model = (function() {
       wave: 'sawtooth',
       pressed: null,
       pitch: 'C3',
-      // editingParam: 'Portamento',
       paramRows: {
         'top': 'vibrato',
-        'mid': 'volume',
-        'low': 'glide',
+        'middle': 'volume',
+        'bottom': 'glide',
       },
       params: {
-        Portamento: 0,
-        Vibrato: 0
+        vibrato: 0,
+        volume: -5,
+        glide: 0,
+        detune: 0,
       },
     },
   }
@@ -144,39 +147,52 @@ const model = (function() {
 
 
   // PARAMS ---------------------------------------------------------------
-  const changeEditingParam = function(synthNum, param) {
-    state[synthNum].editingParam = param
-    if (synthNum === 'synth1') {
-      pubSub.publish('params1Changed')
-    } else if (synthNum === 'synth2') {
-      pubSub.publish('params2Changed')
+  const updateParamFromKey = function(synthNum, pressed, assignRow) {
+    // console.log('assignRow', assignRow, 'pressed', pressed)
+    let editingRow = ''
+    if (constants.params_rows.top.includes(pressed)) { editingRow = 'top' }
+    else if (constants.params_rows.middle.includes(pressed)) { editingRow = 'middle' }
+    else if (constants.params_rows.bottom.includes(pressed)) { editingRow = 'bottom' }
+    else {
+      state[synthNum].awaitingParamAssign = false // is this sufficient coverage?
+      return
     }
-  }
-
-  const updateParamFromKey = function(synthNum, pressed) {
-    // console.log('pressed', pressed)
-    if (pressed in constants.param_select_keys) {
-      const param = constants.param_select_keys[pressed]
-      // console.log('param', param)
-      changeEditingParam(synthNum, param)
-    } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
-      if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
-           (synthNum==='synth2' && state.synth2.editingParam==='Portamento') ) {
-        setParam(synthNum, constants.portamento_keys[pressed])
-      } else if ( (synthNum==='synth1' && state.synth1.editingParam==='Vibrato') ||
-           (synthNum==='synth2' && state.synth2.editingParam==='Vibrato') ) {
-        setParam(synthNum, constants.vibrato_keys[pressed])
+    if (assignRow) {
+      console.log('assignRow')
+      state[synthNum].awaitingParamAssign = editingRow
+      if (synthNum === 'synth1') { pubSub.publish('params1Changed') }
+      else if (synthNum === 'synth2') { pubSub.publish('params2Changed') }
+      return
+    }
+    if (state[synthNum].awaitingParamAssign !== false) {
+      if (pressed in constants.param_grids) {
+        state[synthNum].paramRows[state[synthNum].awaitingParamAssign] = constants.param_grids[pressed]
       }
+      state[synthNum].awaitingParamAssign = false
+      console.log(state)
+      if (synthNum === 'synth1') { pubSub.publish('params1Changed') }
+      else if (synthNum === 'synth2') { pubSub.publish('params2Changed') }
+      return
     }
-  }
-
-  const setParam = function(synthNum, value) {
-    // console.log(value)
-    state[synthNum].params[state[synthNum].editingParam] = value
+    const param = state[synthNum].paramRows[editingRow]
+    console.log('param', param)
+    const prevParamValue = state[synthNum].params[param]
+    console.log('prevParamValue', prevParamValue)
+    const modifier = constants.param_keys[pressed]
+    console.log('modifier', modifier)
+    const modifierValue = constants.param_values[param][modifier]
+    console.log('modifierValue', modifierValue)
+    let newParamValue = pressed.length > 1 ? modifierValue : prevParamValue + modifierValue
+    const paramMax = constants.param_minmax[param].max
+    const paramMin = constants.param_minmax[param].min
+    newParamValue = Math.round(newParamValue*10)/10
+    newParamValue = newParamValue >  paramMax ? paramMax : newParamValue
+    newParamValue = newParamValue <  paramMin ? paramMin : newParamValue
+    state[synthNum].params[param] = newParamValue
     if (synthNum === 'synth1') {
-      pubSub.publish('params1Changed')
+      pubSub.publish('params1Changed', param)
     } else if (synthNum === 'synth2') {
-      pubSub.publish('params2Changed')
+      pubSub.publish('params2Changed', param)
     }
   }
 
@@ -215,10 +231,10 @@ const model = (function() {
 
 
 // const updateParamFromKey = function(synthNum, pressed) {
-  console.log('pressed', pressed)
+//   console.log('pressed', pressed)
   // if (pressed in constants.param_select_keys) {
   //   const param = constants.param_select_keys[pressed]
-    console.log('param', param)
+  //   console.log('param', param)
     // changeEditingParam(synthNum, param)
   // } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
   //   if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
@@ -229,5 +245,31 @@ const model = (function() {
   //     setParam(synthNum, constants.vibrato_keys[pressed])
   //   }
   // }
+// }
+
+// const changeEditingParam = function(synthNum, param) {
+//   state[synthNum].editingParam = param
+//   if (synthNum === 'synth1') {
+//     pubSub.publish('params1Changed')
+//   } else if (synthNum === 'synth2') {
+//     pubSub.publish('params2Changed')
+//   }
+// }
+
+// const updateParamFromKey = function(synthNum, pressed) {
+//   // console.log('pressed', pressed)
+//   if (pressed in constants.param_select_keys) {
+//     const param = constants.param_select_keys[pressed]
+//     // console.log('param', param)
+//     changeEditingParam(synthNum, param)
+//   } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
+//     if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
+//          (synthNum==='synth2' && state.synth2.editingParam==='Portamento') ) {
+//       setParam(synthNum, constants.portamento_keys[pressed])
+//     } else if ( (synthNum==='synth1' && state.synth1.editingParam==='Vibrato') ||
+//          (synthNum==='synth2' && state.synth2.editingParam==='Vibrato') ) {
+//       setParam(synthNum, constants.vibrato_keys[pressed])
+//     }
+//   }
 // }
 
