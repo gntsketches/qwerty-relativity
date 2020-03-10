@@ -34,7 +34,7 @@ const view = (function() {
     ].join("\n"));
   }
 
-  const buildParamsView = function(synthNum) {
+  const buildParamsView = function(synthNum, hand) {
     console.log('buildParamsView', synthNum)
     const topParam = model.state[synthNum].paramRows.top
     const topParamVal= model.state[synthNum].params[topParam]
@@ -42,6 +42,10 @@ const view = (function() {
     const middleParamVal= model.state[synthNum].params[middleParam]
     const bottomParam = model.state[synthNum].paramRows.bottom
     const bottomParamVal= model.state[synthNum].params[bottomParam]
+
+    const handGrid = hand === 'left'
+      ? ["<span>q-Vol</span><span>w-Glide</span><span>e-Vib</span><span>r-Tune</span>"]
+      : ["<span>i-Vol</span><span>o-Glide</span><span>p-Vib</span><span>[-Tune</span>"];
 
     if (model.state[synthNum].awaitingParamAssign !== false) {
       console.log('awaitingParamAssign in view')
@@ -51,7 +55,7 @@ const view = (function() {
         "  <div class='which-synth'>choose " + synthNum + " " + editingRow + " param:</div>",
         "  <div class='param-grid'>",
         "    <div class='param-grid-row'>",
-        "      <span>i Vol</span><span>o Glide</span><span>p Vib</span><span>[ Tune</span>",
+        ...handGrid,
         "    </div>",
         "  </div>",
         "</div>"
@@ -86,10 +90,10 @@ const view = (function() {
         leftHandDOM.html(buildPitchView('synth2'))
         break
       case 'params1':
-        leftHandDOM.html(buildParamsView('synth1')) // this is confusing. params and synth mean 2 different things here
+        leftHandDOM.html(buildParamsView('synth1', 'left')) // this is confusing. params and synth mean 2 different things here
         break
       case 'params2':
-        leftHandDOM.html(buildParamsView('synth2'))
+        leftHandDOM.html(buildParamsView('synth2', 'left'))
         break
     }
 
@@ -104,10 +108,10 @@ const view = (function() {
         rightHandDOM.html(buildPitchView('synth2'))
         break
       case 'params1':
-        rightHandDOM.html(buildParamsView('synth1'))
+        rightHandDOM.html(buildParamsView('synth1', 'right'))
         break
       case 'params2':
-        rightHandDOM.html(buildParamsView('synth2'))
+        rightHandDOM.html(buildParamsView('synth2', 'right'))
         break
     }
 

@@ -151,20 +151,23 @@ const constants = {
 
   params_rows: {  // can manage LH and RH
     top: [
-      // '2': etc
+      '2', '3', '4', '5', '12', '13', '14', '15', '62', '63', '64', '65', 'tab2', 'tab3', 'tab4', 'tab5',
       '9', '0', '-', '=', '89', '80', '8-', '8=', 'back9', 'back0', 'back-', 'back=', ']9', ']0', ']-', ']='
     ],
     middle: [
+      'q', 'w', 'e', 'r', 'tabq', 'tabw', 'tabe', 'tabr', 'tq', 'tw', 'te', 'tr',
       'i', 'o', 'p', '[', 'ui', 'uo', 'up', 'u[', ']i', ']o', ']p', ']['
     ],
     bottom: [
-      'k', 'l', ';', "'", 'jk', 'jl', 'j;', "j'", "enterk", "enterl", "enter;", "enter'"
+      'a', 's', 'd', 'f', 'taba', 'tabs', 'tabd', 'tabf', 'ga', 'gs', 'gd', 'gf',
+      'k', 'l', ';', "'", 'jk', 'jl', 'j;', "j'", "enterk", "enterl", "enter;", "enter'",
     ],
   },
 
   param_grids: {  // also can manage LR and RH. since it's different keys.
     // LEFT HAND
-    // '2': etc.
+    'q': 'volume',  'w': 'glide', 'e': 'vibrato', 'r': 'detune',
+    // 'k': 'attack','l': 'decay', ';': 'sustain', "'": 'release',
 
     // RIGHT HAND
     'i': 'volume',  'o': 'glide', 'p': 'vibrato', '[': 'detune',
@@ -172,6 +175,19 @@ const constants = {
   },
 
   param_keys : {  // can ALSO manage LR and RH. hey wow.
+    // LEFT HAND
+    '2': '-hi', '3': '-lo', '4': '+lo', '5': '+hi',
+    'q': '-hi', 'w': '-lo', 'e': '+lo', 'r': '+hi',
+    'a': '-hi', 's': '-lo', 'd': '+lo', 'f': '+hi',
+
+    '12': 'val1',     '13': 'val2',     '14': 'val3',       '15': 'val4',
+    '62':  'val1',    '63':  'val2',    '64': 'val3',       '65': 'val4',
+    'tab2': 'val1',   'tab3': 'val2',   'tab4': 'val3',     'tab5': 'val4',
+    'tabq': 'val1',   'tabw': 'val2',   'tabe': 'val3',     'tabr': 'val4',
+    'tq': 'val1',     'tw': 'val2',     'te': 'val3',       'tr': 'val4',
+    'taba': 'val1',   'tabs': 'val2',   'tabd': 'val3',     'tabf': 'val4',
+    'ga': 'val1',     'gs': 'val2',     'gd': 'val3',       "gf": 'val4',
+
     // RIGHT HAND
     '9': '-hi', '0': '-lo', '-': '+lo', '=': '+hi',
     'i': '-hi', 'o': '-lo', 'p': '+lo', '[': '+hi',
@@ -201,13 +217,13 @@ const constants = {
       'val4': 20,
     },
     glide: {
-      '-lo': -0.1,
-      '+lo': 0.1,
-      '-hi': -0.5,
-      '+hi': 0.5,
+      '-lo': -0.01,
+      '+lo': 0.01,
+      '-hi': -0.05,
+      '+hi': 0.05,
       'val1': 0,
-      'val2': 0.4,
-      'val3': 1.6,
+      'val2': 0.2,
+      'val3': 1,
       'val4': 5,
     },
     volume: {
@@ -233,10 +249,10 @@ const constants = {
   },
 
   param_minmax: {
-    volume: { min: -20, max: 10 },
+    volume: { min: -100, max: 50 },
     vibrato: { min: 0, max: 100 },
     detune: { min: -100, max: 100 },
-    glide: { min: -50, max: 50 }
+    glide: { min: 0, max: 20 }
   },
 
 }

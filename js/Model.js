@@ -45,6 +45,7 @@ const model = (function() {
         'middle': 'volume',
         'bottom': 'glide',
       },
+      awaitingParamAssign: false,
       params: {
         vibrato: 0,
         volume: -5,
@@ -185,7 +186,7 @@ const model = (function() {
     let newParamValue = pressed.length > 1 ? modifierValue : prevParamValue + modifierValue
     const paramMax = constants.param_minmax[param].max
     const paramMin = constants.param_minmax[param].min
-    newParamValue = Math.round(newParamValue*10)/10
+    newParamValue = Math.round(newParamValue*100)/100
     newParamValue = newParamValue >  paramMax ? paramMax : newParamValue
     newParamValue = newParamValue <  paramMin ? paramMin : newParamValue
     state[synthNum].params[param] = newParamValue

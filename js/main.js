@@ -50,8 +50,10 @@ const interpretKeypress = function(zone, pressed) {
         model.setPitchAndPressed('left', 'synth1', pressed)
       } else if (leftHand==='synth2') {
         model.setPitchAndPressed('left', 'synth2', pressed)
-      } else {
-        // do something special?
+      } else if (leftHand==='params1') {
+        model.updateParamFromKey('synth1', pressed, true)
+      } else if (leftHand==='params2') {
+        model.updateParamFromKey('synth2', pressed, true )
       }
       break
 
