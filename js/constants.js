@@ -251,7 +251,7 @@ const constants = {
   param_minmax: {
     volume: { min: -100, max: 50 },
     vibrato: { min: 0, max: 100 },
-    detune: { min: -100, max: 100 },
+    detune: { min: -2400, max: 2400 },
     glide: { min: 0, max: 20 }
   },
 

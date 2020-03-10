@@ -47,34 +47,22 @@ const audio = (function() {
     console.log('updating param', param)
     switch (param) {
       case 'volume':
-        setSynth1Volume()
+        synth1.volume.value = model.state.synth1.params.volume
         break
       case 'glide':
-        setSynth1Portamento()
+        synth1.portamento = model.state.synth1.params.glide
         break
       case 'detune':
-        setSynth1Detune()
+        synth1.detune.value = model.state.synth1.params.detune
         break
       case 'vibrato':
-        setSynth1VibratoFrequency()
+        vibrato1.frequency.value = model.state.synth1.params.vibrato
         break
       default:
         return
     }
   }
 
-  const setSynth1Portamento = function() {
-    synth1.portamento = model.state.synth1.params.glide
-  }
-  const setSynth1VibratoFrequency = function() {
-    vibrato1.frequency.value = model.state.synth1.params.vibrato
-  }
-  const setSynth1Volume = function() {
-    synth1.volume.value = model.state.synth1.params.volume
-  }
-  const setSynth1Detune = function() {
-    synth1.detune.value = model.state.synth1.params.detune
-  }
   const setSynth1Wave = function() {
     synth1.oscillator.type = model.state.synth1.wave
   }
@@ -120,24 +108,23 @@ const audio = (function() {
 
   const updateSynth2Param = function(param) {
     console.log('updating param', param)
-    return
-
-    switch (model.state.synth2.editingParam) {
-      case 'Portamento':
-        setSynth2Portamento()
+    switch (param) {
+      case 'volume':
+        synth2.volume.value = model.state.synth2.params.volume
         break
-      case 'Vibrato':
-        setSynth2VibratoFrequency()
+      case 'glide':
+        synth2.portamento = model.state.synth2.params.glide
         break
+      case 'detune':
+        synth2.detune.value = model.state.synth2.params.detune
+        break
+      case 'vibrato':
+        vibrato2.frequency.value = model.state.synth2.params.vibrato
+        break
+      default:
+        return
     }
-  }
 
-  const setSynth2Portamento = function() {
-    synth2.portamento = model.state.synth2.params.Portamento
-  }
-
-  const setSynth2VibratoFrequency = function() {
-    vibrato2.frequency.value = model.state.synth2.params.Vibrato
   }
 
   const setSynth2Wave = function() {
