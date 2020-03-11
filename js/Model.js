@@ -31,6 +31,10 @@ const model = (function() {
         volume: -5,
         glide: 0,
         detune: 0,
+        attack: 0.005,
+        decay: 0.01,
+        sustain: 0.5,
+        release: 3,
       },
     },
     synth2: {
@@ -51,6 +55,10 @@ const model = (function() {
         volume: -5,
         glide: 0,
         detune: 0,
+        attack: 0.005,
+        decay: 0.01,
+        sustain: 0.5,
+        release: 3,
       },
     },
   }
@@ -186,9 +194,9 @@ const model = (function() {
     let newParamValue = pressed.length > 1 ? modifierValue : prevParamValue + modifierValue
     const paramMax = constants.param_minmax[param].max
     const paramMin = constants.param_minmax[param].min
-    newParamValue = Math.round(newParamValue*100)/100
-    newParamValue = newParamValue >  paramMax ? paramMax : newParamValue
-    newParamValue = newParamValue <  paramMin ? paramMin : newParamValue
+    newParamValue = Math.round(newParamValue*100)/100  // this should go elsewhere, and conditionally
+    newParamValue = newParamValue > paramMax ? paramMax : newParamValue
+    newParamValue = newParamValue < paramMin ? paramMin : newParamValue
     state[synthNum].params[param] = newParamValue
     if (synthNum === 'synth1') {
       pubSub.publish('params1Changed', param)

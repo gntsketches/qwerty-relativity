@@ -58,6 +58,18 @@ const audio = (function() {
       case 'vibrato':
         vibrato1.frequency.value = model.state.synth1.params.vibrato
         break
+      case 'attack':
+        synth1.envelope.attack = model.state.synth1.params.attack
+        break
+      case 'decay':
+        synth1.envelope.decay = model.state.synth1.params.decay
+        break
+      case 'sustain':
+        synth1.envelope.sustain = model.state.synth1.params.sustain
+        break
+      case 'release':
+        vibrato1.envelope.release = model.state.synth1.params.release
+        break
       default:
         return
     }
@@ -120,6 +132,18 @@ const audio = (function() {
         break
       case 'vibrato':
         vibrato2.frequency.value = model.state.synth2.params.vibrato
+        break
+      case 'attack':
+        synth2.envelope.attack = model.state.synth2.params.attack
+        break
+      case 'decay':
+        synth2.envelope.decay = model.state.synth2.params.decay
+        break
+      case 'sustain':
+        synth2.envelope.sustain = model.state.synth2.params.sustain
+        break
+      case 'release':
+        vibrato2.envelope.release = model.state.synth2.params.release
         break
       default:
         return

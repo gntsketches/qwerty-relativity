@@ -2,7 +2,6 @@
 const singleKeyExcludedLeft = "shift ctrl tab t g 1 6"
 const singleKeyExcludedRight = "shift ctrl u j ] enter 8 backspace"
 const doubleKeyExcluded = "shift control"
-// const doubleKeyExcluded = "shift control"
 const shiftedSingleKeyExcludedLeft = "control tab t g"
 const shiftedSingleKeyExcludedRight = "control u j ] enter"
 

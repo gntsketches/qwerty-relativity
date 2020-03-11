@@ -1,5 +1,14 @@
 
-
+TODO
+  install envelope params
+  initialize synths from state
+  smoother volume change?
+  link synths?
+    yeah but you gotta set them both to one type of sustain (pluck, press, hold)
+      otherwise it's just too crazy. 'cur' note will start and stop hold, etc.
+    which is 'lead'? whichever has the spacebar
+    so if you're in that mode, changing sustain mode affects both synths
+  persist? (check with Seo about synth performance if persisting notes)
 
 
 *** DEV QUESTIONS ********************************************************************

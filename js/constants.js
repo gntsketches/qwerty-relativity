@@ -167,11 +167,11 @@ const constants = {
   param_grids: {  // also can manage LR and RH. since it's different keys.
     // LEFT HAND
     'q': 'volume',  'w': 'glide', 'e': 'vibrato', 'r': 'detune',
-    // 'k': 'attack','l': 'decay', ';': 'sustain', "'": 'release',
+    'a': 'attack',  's': 'decay', 'd': 'sustain', 'f': 'release',
 
     // RIGHT HAND
     'i': 'volume',  'o': 'glide', 'p': 'vibrato', '[': 'detune',
-    // 'k': 'attack','l': 'decay', ';': 'sustain', "'": 'release',
+    'k': 'attack',  'l': 'decay', ';': 'sustain', "'": 'release',
   },
 
   param_keys : {  // can ALSO manage LR and RH. hey wow.
