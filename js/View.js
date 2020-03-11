@@ -44,8 +44,13 @@ const view = (function() {
     const bottomParamVal= model.state[synthNum].params[bottomParam]
 
     const handGrid = hand === 'left'
-      ? ["<span>q-Vol</span><span>w-Glide</span><span>e-Vib</span><span>r-Tune</span>"]
-      : ["<span>i-Vol</span><span>o-Glide</span><span>p-Vib</span><span>[-Tune</span>"];
+      ? [
+        "<span>q-Vol</span><span>w-Glide</span><span>e-Vib</span><span>r-Tune</span>",
+        "<span>a-Attack</span><span>s-Decay</span><span>d-Sustain</span><span>f-Release</span>",
+      ] : [
+        "<span>i-Vol</span><span>o-Glide</span><span>p-Vib</span><span>[-Tune</span>",
+        "<span>k-Attack</span><span>l-Decay</span><span>;-Sustain</span><span>'-Release</span>",
+      ];
 
     if (model.state[synthNum].awaitingParamAssign !== false) {
       console.log('awaitingParamAssign in view')

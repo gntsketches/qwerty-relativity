@@ -194,7 +194,10 @@ const model = (function() {
     let newParamValue = pressed.length > 1 ? modifierValue : prevParamValue + modifierValue
     const paramMax = constants.param_minmax[param].max
     const paramMin = constants.param_minmax[param].min
-    newParamValue = Math.round(newParamValue*100)/100  // this should go elsewhere, and conditionally
+    // conditional rounding
+    let round
+    if (param === 'attack') { round = 1000 } else { round = 100 }
+    newParamValue = Math.round(newParamValue*round)/round
     newParamValue = newParamValue > paramMax ? paramMax : newParamValue
     newParamValue = newParamValue < paramMin ? paramMin : newParamValue
     state[synthNum].params[param] = newParamValue
@@ -237,48 +240,4 @@ const model = (function() {
   }
 
 })()
-
-
-// const updateParamFromKey = function(synthNum, pressed) {
-//   console.log('pressed', pressed)
-  // if (pressed in constants.param_select_keys) {
-  //   const param = constants.param_select_keys[pressed]
-  //   console.log('param', param)
-    // changeEditingParam(synthNum, param)
-  // } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
-  //   if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
-  //     (synthNum==='synth2' && state.synth2.editingParam==='Portamento') ) {
-  //     setParam(synthNum, constants.portamento_keys[pressed])
-  //   } else if ( (synthNum==='synth1' && state.synth1.editingParam==='Vibrato') ||
-  //     (synthNum==='synth2' && state.synth2.editingParam==='Vibrato') ) {
-  //     setParam(synthNum, constants.vibrato_keys[pressed])
-  //   }
-  // }
-// }
-
-// const changeEditingParam = function(synthNum, param) {
-//   state[synthNum].editingParam = param
-//   if (synthNum === 'synth1') {
-//     pubSub.publish('params1Changed')
-//   } else if (synthNum === 'synth2') {
-//     pubSub.publish('params2Changed')
-//   }
-// }
-
-// const updateParamFromKey = function(synthNum, pressed) {
-//   // console.log('pressed', pressed)
-//   if (pressed in constants.param_select_keys) {
-//     const param = constants.param_select_keys[pressed]
-//     // console.log('param', param)
-//     changeEditingParam(synthNum, param)
-//   } else if (pressed in constants.portamento_keys || pressed in constants.vibrato_keys) {
-//     if ( (synthNum==='synth1' && state.synth1.editingParam==='Portamento') ||
-//          (synthNum==='synth2' && state.synth2.editingParam==='Portamento') ) {
-//       setParam(synthNum, constants.portamento_keys[pressed])
-//     } else if ( (synthNum==='synth1' && state.synth1.editingParam==='Vibrato') ||
-//          (synthNum==='synth2' && state.synth2.editingParam==='Vibrato') ) {
-//       setParam(synthNum, constants.vibrato_keys[pressed])
-//     }
-//   }
-// }
 

@@ -246,16 +246,58 @@ const constants = {
       'val3': 0,
       'val4': 50,
     },
+    attack: {
+      '-lo': -0.05,
+      '+lo': 0.05,
+      '-hi': -0.5,
+      '+hi': 0.5,
+      'val1': 0.005,
+      'val2': 0.5,
+      'val3': 1,
+      'val4': 10,
+    },
+    decay: {
+      '-lo': -0.01,
+      '+lo': 0.01,
+      '-hi': -0.1,
+      '+hi': 0.1,
+      'val1': 0,
+      'val2': 0.01,
+      'val3': 0.1,
+      'val4': 1,
+    },
+    sustain: {
+      '-lo': -0.1,
+      '+lo': 0.1,
+      '-hi': -0.2,
+      '+hi': 4,
+      'val1': 0.25,
+      'val2': 0.50,
+      'val3': 0.75,
+      'val4': 1,
+    },
+    release: {
+      '-lo': -0.1,
+      '+lo': 0.1,
+      '-hi': -1,
+      '+hi': 1,
+      'val1': 0,
+      'val2': 1,
+      'val3': 5,
+      'val4': 20,
+    },
   },
 
   param_minmax: {
     volume: { min: -100, max: 50 },
     vibrato: { min: 0, max: 100 },
     detune: { min: -2400, max: 2400 },
-    glide: { min: 0, max: 20 }
+    glide: { min: 0, max: 20 },
+    attack: { min: 0.005, max: 60 },
+    decay: { min: 0.01, max: 60 },
+    sustain: { min: 0, max: 1 },
+    release: { min: 0.01, max: 60 },
   },
 
 }
-
-
 

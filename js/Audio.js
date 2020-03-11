@@ -68,7 +68,7 @@ const audio = (function() {
         synth1.envelope.sustain = model.state.synth1.params.sustain
         break
       case 'release':
-        vibrato1.envelope.release = model.state.synth1.params.release
+        synth1.envelope.release = model.state.synth1.params.release
         break
       default:
         return
@@ -143,7 +143,7 @@ const audio = (function() {
         synth2.envelope.sustain = model.state.synth2.params.sustain
         break
       case 'release':
-        vibrato2.envelope.release = model.state.synth2.params.release
+        synth2.envelope.release = model.state.synth2.params.release
         break
       default:
         return
