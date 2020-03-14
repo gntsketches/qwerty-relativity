@@ -852,6 +852,30 @@ const RH_keys = [
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
   },
   {
+    "keys": "enter i",
+    "on_keydown": function () { interpretKeypress('right', "enteri") },
+    "on_keyup": function () { interpretKeypress('right-up', "enteri") },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "enter o",
+    "on_keydown": function () { interpretKeypress('right', "entero") },
+    "on_keyup": function () { interpretKeypress('right-up', "entero") },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "enter p",
+    "on_keydown": function () { interpretKeypress('right', "enterp") },
+    "on_keyup": function () { interpretKeypress('right-up', "enterp") },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
+    "keys": "enter [",
+    "on_keydown": function () { interpretKeypress('right', "enter[") },
+    "on_keyup": function () { interpretKeypress('right-up', "enter[") },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": doubleKeyExcluded,
+  },
+  {
     "keys": "enter k",
     "on_keydown": function () { interpretKeypress('right', "enterk") },
     "on_keyup": function () { interpretKeypress('right-up', "enterk") },

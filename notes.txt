@@ -1,8 +1,12 @@
 
 TODO
-  install envelope params
+  play-test envelope and other params
+  add fourth param row
   initialize synths from state
   smoother volume change?
+  merge into master
+  review code with Seo
+
   link synths?
     yeah but you gotta set them both to one type of sustain (pluck, press, hold)
       otherwise it's just too crazy. 'cur' note will start and stop hold, etc.
