@@ -8,8 +8,8 @@ const model = (function() {
   const state = {
 
     leftHand: 'synth1',
-    rightHand: 'params1',
-    spacebar: 'left',
+    rightHand: 'synth2',
+    spacebar: 'right',
     synthsLinked: false,
     paramsLinked: false,
 
@@ -17,13 +17,13 @@ const model = (function() {
       sustain: 'Pluck',
       holding: false,
       // traveling: true,
-      wave: 'triangle',
+      wave: 'sawtooth',
       pressed: null,
       pitch: 'C3',
       paramRows: {
         'top': 'vibrato',
-        'middle': 'volume',
-        'bottom': 'glide',
+        'middle': 'glide',
+        'bottom': 'volume',
       },
       awaitingParamAssign: false,
       params: {
@@ -41,13 +41,13 @@ const model = (function() {
       sustain: 'Pluck',
       holding: false,
       // traveling: true,
-      wave: 'sawtooth',
+      wave: 'triangle',
       pressed: null,
-      pitch: 'C3',
+      pitch: 'C4',
       paramRows: {
         'top': 'vibrato',
-        'middle': 'volume',
-        'bottom': 'glide',
+        'middle': 'glide',
+        'bottom': 'volume',
       },
       awaitingParamAssign: false,
       params: {
