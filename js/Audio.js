@@ -5,9 +5,9 @@ const audio = (function() {
 
   const synth1 = new Tone.Synth(
     {
-      "oscillator" : { "type" : "triangle" },
+      "oscillator" : { "type" : "sawtooth" },
       "envelope" : constants.envelope,
-      "volume": -3,
+      "volume": -6,
     }
   )
 
@@ -21,9 +21,9 @@ const audio = (function() {
 
   const synth2 = new Tone.Synth(
     {
-      "oscillator" : { "type" : "sawtooth" },
+      "oscillator" : { "type" : "triangle" },
       "envelope" : constants.envelope,
-      "volume": -10,
+      "volume": -4,
     }
   )
 

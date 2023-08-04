@@ -7,9 +7,9 @@ const model = (function() {
 
   const state = {
 
-    leftHand: 'params1',
-    rightHand: 'synth1',
-    spacebar: 'right',
+    leftHand: 'synth1',
+    rightHand: 'synth2',
+    spacebar: 'left',
     synthsLinked: false,
     paramsLinked: false,
 
@@ -17,7 +17,7 @@ const model = (function() {
       sustain: 'Pluck',
       holding: false,
       // traveling: true,
-      wave: 'triangle',
+      wave: 'sawtooth',
       pressed: null,
       pitch: 'C3',
       editingParam: 'Portamento',
@@ -30,9 +30,9 @@ const model = (function() {
       sustain: 'Pluck',
       holding: false,
       // traveling: true,
-      wave: 'sawtooth',
+      wave: 'triangle',
       pressed: null,
-      pitch: 'C3',
+      pitch: 'C4',
       editingParam: 'Portamento',
       params: {
         Portamento: 0,

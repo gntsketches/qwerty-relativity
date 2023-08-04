@@ -1,5 +1,8 @@
 note that some shift-combos don't work due to ghosting
 
+maybe better to start with Spacebar on rh side?
+"b" will start a held tone but not stop it ("n" both starts and stops)
+
 weird thing: in press mode, go to lowest notes and octave-down, note will sustain indefinitely as if it were hold mode
 
 TODO DEV

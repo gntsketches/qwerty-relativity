@@ -91,6 +91,12 @@ const LH_keys = [
     "on_keyup": function () { interpretKeypress('left-up', 'space') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
   },
+  {
+    "keys": "enter",
+    "on_keydown": function () { interpretKeypress('left', 'space') },
+    "on_keyup": function () { interpretKeypress('left-up', 'space') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedLeft,
+  },
   // {
   //   "keys": "tab",
   //   "on_keydown": function () { interpretKeypress('left', 'tab') },
@@ -573,6 +579,12 @@ const RH_keys = [
 
   {
     "keys": "space",
+    "on_keydown": function () { interpretKeypress('right', 'space') },
+    "on_keyup": function () { interpretKeypress('right-up', 'space') },
+    "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedRight,
+  },
+  {
+    "keys": "enter",
     "on_keydown": function () { interpretKeypress('right', 'space') },
     "on_keyup": function () { interpretKeypress('right-up', 'space') },
     "prevent_default": true, "prevent_repeat": true, "is_exclusive": false, "excludes": singleKeyExcludedRight,

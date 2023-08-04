@@ -33,17 +33,23 @@ body {
 
 .synth1-display {
   height: 100%;
-  background: #779944;
+  background: #7744aa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .synth2-display {
   height: 100%;
-  background: #7744aa;
+  background: #779944;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .which-synth {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 
@@ -59,12 +65,22 @@ body {
 }
 
 .editing-param {
-  font-size: 2rem;
+  font-size: 1.5rem;
   /*line-height: 10rem;*/
 }
 
 .param-value {
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+.param-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.param-grid-row {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .hand-meta-below-left {
@@ -94,11 +110,11 @@ body {
   grid-column-end: 5;
   grid-row-start: 4;
   grid-row-end: 5;
-  border: 2px solid #779944;
-  color: white;
   display: flex;
   align-items: center;
   padding: 5px;
+  color: white;
+  border: 2px solid #7744aa;
 }
 
 #synth2-info {
@@ -106,11 +122,11 @@ body {
   grid-column-end: 5;
   grid-row-start: 5;
   grid-row-end: 6;
-  border: 2px solid #7744aa;
-  color: white;
   display: flex;
   align-items: center;
   padding: 5px;
+  color: white;
+  border: 2px solid #779944;
 }
 
 .synth-title {
